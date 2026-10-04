@@ -1,3234 +1,2613 @@
-
-Install a package:
-pip install package_name
-
-Uninstall a package:
-pip uninstall package_name
-
-Upgrade a package: 
-pip install --upgrade package_name
-
-List installed packages: 
-pip list
-
-Check your pip version:
-pip --version
-
-Pip Installs Packages 
-Preferred Installation Program
-========================================================================>
-Request comes
-     ↓
-1. Middleware BEFORE
-     ↓
-2. API is processing
-     ↓
-3. API creates response
-     ↓
-4. Middleware AFTER
-     ↓
-Response goes to client
-
-So the important rule is:
-
-Code before await self.app(...) → runs BEFORE the request reaches the API.
-
-Code after await self.app(...) → runs AFTER the API has processed the request.
-
-await self.app(scope, receive, send)
-
-basically means:
-"Now pass this request to the next application layer and wait until it finishes."
-
-So:
-print("BEFORE")
-await self.app(scope, receive, send)
-print("AFTER")
-
-========================================================================>
-Python file = a container that can contain many different things. 📦   
-Python file
-│
-├── Variables
-├── Functions
-├── Classes
-├── Imports
-├── Constants
-└── Other Python code
-
-========================================================================>
-1. What is Encryption?
-Encryption means:
-Converting normal readable data (plain text) into an unreadable format
-(encrypted/cipher text) using an encryption algorithm and a key.
-
-Example:
-Original data
-    ↓
-"Anil123"
-    ↓
-   🔐 Encryption
-    ↓
-"8fK2@xP91..."
-
-The encrypted value looks meaningless to someone who doesn't have the required key.
-
-Real-world example
-
-Imagine you write:
-
-My password is 12345
-
-You put it inside a locked box:
-
-"My password is 12345"
-          ↓
-       🔒 LOCK
-          ↓
-     "X7@k92Lm..."
-
-That locking process is similar to encryption.
-
-
-2. What is Decryption?
-Decryption is the opposite.
-It means:
-Converting encrypted/unreadable data back into the original readable data using the appropriate key.
-Encrypted data
-     ↓
-"8fK2@xP91..."
-     ↓
-    🔓 Decryption
-     ↓
-"Anil123"
-So:
-Encryption = Lock 🔒
-Decryption = Unlock 🔓
-
-========================================================================>
-
-========================================================================>
-
- raise DepartmentExistsError(name)
-plan = plan_role_addition(role_name, rec["custom_roles
-========================================================================>
-Defensive programming means:
-Writing code in a way that expects possible problems and handles them safely 
-instead of assuming everything will always work correctly.
-
-Think of it like wearing a seat belt. 🚗
-You don't expect an accident, but you prepare for one just in case.
-Simple coding example
-
-Without defensive programming:
-def divide(a, b):
-    return a / b
-What happens if:
-divide(10, 0)
-💥 Error: division by zero.
-With defensive programming:
-def divide(a, b):
-    if b == 0:
-        return "Cannot divide by zero"
-    return a / b
-Now the code expects that someone might give 0 and handles it safely.
-
-========================================================================>
-_LEGACY_STAFF_ROLES అంటే చాలా simple గా:
-"పాత (old) staff roles" అని అర్థం.
-ఇక్కడ ప్రతి పదం:
-_ → సాధారణంగా internal/private variable అని సూచించడానికి Pythonలో ఉపయోగిస్తారు.
-LEGACY → పాతది / గతంలో ఉపయోగించినది
-STAFF_ROLES → Staff roles / ఉద్యోగుల పాత్రలు
-ex : _LEGACY_STAFF_ROLES = {"Admin", "SuperAdmin", "Employee", "Supervisor", "Cashier"} 
-========================================================================>
-def set_department_head(session, dept_id: str,
-
-========================================================================>
-hmac.compare_digest(token, active)
-
-"hmac.compare_digest() securely compares two secret values, "
-"such as a token sent by the client and a token stored on the server."
-" If both values match, it returns True; otherwise it returns False. "
-"The function itself does not generate the token."   
-
-========================================================================>
-"Both are mature relational databases. "
-"The choice depends on the application's requirements,"
-" existing ecosystem, team expertise, and database features needed."
-
-========================================================================>
-11. Interview answer
-
-If an interviewer asks:
-
-"How can an application redirect a user to their previous page after login?"
-
-You can answer:
-
-"The frontend can preserve the originally requested route or last visited route,"
-" for example using a return URL, router state, or browser storage."
-" After successful authentication, the frontend reads that route and navigates the user back to it. "
-"Alternatively, the application may use role-based default routing,"
-" where the backend returns the user's role and the frontend chooses the appropriate landing page."
-
-
-
-1. Most common reason — frontend remembers the last route
-Suppose your URL is:
-https://example.com/users/roles
-When you logout, the application may clear your authentication token:
-localStorage
-   ↓
-remove access_token
-
-But it may not clear the current route.
-The frontend might have something like:
-currentRoute = "/users/roles"
-
-After login, the application says:
-Login successful
-       ↓
-Where should I navigate?
-       ↓
-Last/previous route
-       ↓
-/users/roles
-
-So you are taken back there.
-if login successful:     
-navigate(previousRoute)   
-
-
-3. Another possibility — localStorage
-The frontend may store something like:
-localStorage.setItem(
-    "lastVisitedPage",
-    "/users/roles"
-);
-
-========================================================================>
-Term	Meaning	Example
-
-Sign Up	Create a new account (Registration)	You enter your name, email, password → account is created
-Sign In	Enter an existing account (Login)	You enter your email + password → you access your account
-
-🧠 Easy way to remember
-
-Sign Up = First time → Create account 🆕
-Sign In = Already have account → Enter account 🔑
-
-So:
-Sign Up = Registration
-Sign In = Login
-========================================================================>
-A company doesn't necessarily make money by charging the user directly.
- It can provide a free product to attract a huge number of users and make money from other 
- parts of the business.   
-
-
-1. First understand the basic business model
-I
-magine I create an app called "AnilTube".
-
-I tell you:
-
-"Use it completely free!"
-You might ask:
-"Then how does AnilTube make money?"
-
-There are several possibilities:
-Model 1 — Advertisements
-
-Companies pay me:
-"Show our advertisement to your users."
-
-Example:
-You use a free app.
-100 million people use it.
-
-A company pays the app company to show advertisements to those users.
-So:
-Users → Free service
-Advertisers → Pay company
-Company → Pays developers + servers + other expenses
-Company → Keeps remaining money as profit
-
-2. Google is a great example 
-
-Google provides many products for free:
- Google Search 
- Gmail 
- Chrome 
- Google Maps 
- YouTube 
- Google Photos (with limits) 
- Google Drive (with limits) 
-
-You
- ↓
-Use Google Search FREE
- ↓
-Google has millions/billions of users
- ↓
-Businesses want to reach those users
- ↓
-Businesses pay Google for advertising
- ↓
-Google earns revenue 
-
-1,000 developers
-
-Each developer needs:
-Salary
-Laptop
-Office/infrastructure
-Internet
-Benefits
-etc.
-
-Google also needs:
-Servers
-Databases
-Storage
-Networking
-Security
-Data centers
-Electricity
-Monitoring
-Customer support
-
-All of this costs money.
-
-Google earns revenue from various businesses, including advertising and paid products/services.
-
-That revenue is used to pay those expenses.
-Simplified:
-                 GOOGLE
-                    |
-       ┌────────────┴────────────┐
-       ↓                         ↓
-    Revenue                   Expenses
-       |                         |
-       ↓                         ↓
- Advertising                Developer salaries
- Cloud                      Servers
- YouTube subscriptions      Data centers
- Google Workspace           Security
- Other services             Operations
-       |
-       ↓
- Remaining money
-       |
-       ↓
-     Profit 
-
-Because Gmail is part of the Google ecosystem.
-For example:
-
-You have:
-Gmail
-↓
-Google Drive
-↓
-Google Docs
-↓
-Google Calendar
-↓
-Google Meet
-↓
-Google Search
-↓
-YouTube
-
-6. What about WhatsApp? => statues rlated to products 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-DISTINCT is applied to the entire combination of columns returned, not only to mobile.
-Your query returns:
-RETURN DISTINCT
-    sub.mobile AS mobile,
-    sub.user_id AS user_id,
-    sub.first_name AS first_name,
-    sub.last_name AS last_name,
-    sub.role AS role
-Think of each result as a complete row:
-mobile	user_id	first_name	last_name	role
-9876	U001	Ravi	Kumar	Employee
-9876	U001	Ravi	Kumar	Employee
-9876	U001	Ravi	Kumar	Manager
-9999	U002	Anil	Kumar	Employee
-DISTINCT compares the whole row.
-
-
-=============================================>
-Click any line → immediately see who last changed that line, when, and which commit.   
-Steps
-1. Open Extensions
-Press:
-Ctrl + Shift + X
-2. Search for:
-GitLens
-3. Install GitLens — Git supercharged
-After installation, restart/reload the editor if asked.   
-========================================================================>
-
-1. First understand what a "slab" is
-
-Imagine your incentive system has these slabs:
-Lead Type	Min Count	Max Count	Rate
-HOT	1	10	100
-HOT	11	20	150
-HOT	21	30	200
-HOT	31	None	250
-
-This means:
-
-1  - 10       → Rate 100
-11 - 20       → Rate 150
-21 - 30       → Rate 200
-31 onwards    → Rate 250
-
-Here None for max_count means:
-
-There is no upper limit.
-
-So:
-31, 32, 33, 100, 1000
-
-
-all belong to the last slab.
-Call:
-
-slab_for(15, "HOT", slabs)
-
-Flow:
-n = 15
-lead_type = HOT
-        ↓
-Find HOT slabs
-        ↓
-1 - 10       ❌
-11 - 20      ✅
-21 - 30      ❌
-31 onwards   ❌
-        ↓
-
-Return 11 - 20 slab
-
-Result:
-{
-    "lead_type": "HOT",
-    "min_count": 11,
-    "max_count": 20,
-    "rate": 150
-}
-
-
-
-table  ; IncentivePlan 
-
-def db_list_plans(session, period: Optional[str], status: Optional[str]) -> List[dict]:
-    where, params = [], {}
-    if period:
-        where.append("p.period = $period"); params["period"] = period
-    if status:
-        where.append("p.status = $status"); params["status"] = status
-    q = "MATCH (p:IncentivePlan) "
-    if where:
-        q += "WHERE " + " AND ".join(where) + " "
-    q += "RETURN p ORDER BY p.created_at DESC"
-    return [dict(r["p"]) for r in session.run(q, **params)]
-========================================================================>
-In your project, an Incentive Plan is basically a set of rules used to reward employees/marketing staff for achieving certain targets.
-Think of it as:
-"If you achieve this much work, you will get this reward."
-Simple real-world example
-Suppose a Marketing Manager creates this plan:
-Incentive Plan: September 2026
-Lead Type: HOT
-1–10 leads    → ₹100 per lead
-11–20 leads   → ₹150 per lead
-21–30 leads   → ₹200 per lead
-31+ leads     → ₹250 per lead
-So if an employee generates 25 HOT leads, the system can determine which incentive slab applies.
-Why was it introduced?
-Without an incentive plan, the application would have to use hard-coded rules such as:
-if leads <= 10:
-    incentive = 100
-elif leads <= 20:
-    incentive = 150
-That becomes difficult when the business changes the incentive rules.
-Instead, the business can create a plan:
-Marketing Manager
-       ↓
-Create Incentive Plan
-       ↓
-Define Slabs
-       ↓
-Define Prize Tiers
-       ↓
-System stores the rules
-       ↓
-Later calculate employee incentives
-So the main purpose is to make incentive rules configurable and manageable through the application, rather than hard-coding them into Python.
-
-
-
-========================================================================>
-1. Privacy Policy = “What happens to your information?”
-It explains how the company handles your personal data.
-
-For example:
-
-What information is collected?
-Name
-Mobile number
-Email
-Location
-Photos
-
-Why is it collected?
-How is it stored?
-Who can access/share it?
-How can you request or control your data?
-
-Privacy policies are intended to disclose a company's data practices; companies can also have legal obligations to honor privacy promises they make.
-
-Simple example:
-"We collect your mobile number to send OTPs and verify your account."
-
-That belongs in the Privacy Policy.
-
-2. Terms & Conditions = “What are the rules for using our app?”
-
-This explains the rules between you and the company when you use the service.
-
-For example:
-You must provide correct information.
-You cannot misuse the application.
-You cannot create fraudulent accounts.
-What happens if you violate the rules?
-Who owns the app/content?
-What are the responsibilities of the company and user?
-
-How disputes are handled.
-Think of it as:
-"If you use our application, these are the rules you agree to follow."
-
-Easy way to remember
-Document	Main question
-Privacy Policy	🔐 What happens to my data?
-Terms & Conditions	📜 What are the rules for using the app
-
-
-
-========================================================================>
-To exit
-Simply press:
-q
-That's it. You should return to:
-PS C:\Users\DELL\OneDrive\Desktop\markwave_live_services>
-Useful keys while inside git show
-Key	Meaning
-q	Exit
-↑ / ↓	Move up/down
-Space	Next page
-b	Previous page
-/text	Search for text
-
-
-
-========================================================================>
-In Antigravity IDE, using the GitLens extension,
- how can I search for my commits using commit IDs or author (@me), 
- view the matching commit messages in the Search & Compare section, 
- inspect the selected commit using GitLens Inspect, and compare the old code with the new code : 
-
-
-Ctrl + Shift + P
-        ↓
-GitLens: Search Commits
-        ↓
-Search:
-    #4d7a947       → search by commit ID
-    @Anil Kumar    → search by author
-    @me             → your commits
-        ↓
-Search & Compare
-        ↓
-Commit messages/results are displayed
-        ↓
-Select the commit
-        ↓
-GitLens Inspect
-        ↓
-Commit Details
-        ↓
-Changed Files
-        ↓
-Click a changed file
-        ↓
-OLD CODE  ↔  NEW CODE
-
-========================================================================>
-to get the all the commits names using the user name :
-
-PS C:\Users\DELL\OneDrive\Desktop\markwave_live_services> git log --author="Anil Kumar" --oneline
-4d7a947 (HEAD -> user_details_encryption, origin/user_details_encryption) added the middleware to encrypt responses
-f90d9b4 user details n=encryption and decryption
-PS C:\Users\DELL\OneDrive\Desktop\markwave_live_services>      
-
-========================================================================>
-
-Dear Manager and Project Manager,
-
-I would like to acknowledge that I have received the following office equipment for my official work:
-
-Laptop : M1(mackbook pro)
-Serial Number :  FVFGN333Q05N
-Configuration : 16 GB
-
-I confirm that I received all the above items in good condition and will use them for official project-related work.
-
-Thank you for providing the necessary equipment and support.
-
-Kind regards,
-Anil kumar Karri(AnimalKart Team).
-
-
-========================================================================>
-
-calculator-settings/active
-CalculatorSettingsModel
-
-
-The maximum request timeout limit for a Google Cloud Run service is 60 minutes (3,600 seconds),
- with a default setting of 5 minutes (300 seconds).Key Details on Request TimeoutsConfigurable Range: 
-    You can set the request timeout anywhere from 1 to 3,600 seconds
-
-
-A coupon is a special offer that gives a customer some kind of discount or benefit when buying something.
-🛒 Simple real-world example
-Imagine you go to a clothing shop.
-A shirt costs:
-₹1,000
-The shop gives you a coupon:
-COUPON: SAVE100
-The coupon gives you ₹100 discount.
-So:
-Original price       = ₹1,000
-Coupon discount      = ₹100
------------------------------
-Final price          = ₹900
-You pay ₹900 instead of ₹1,000.
-🤔 Why are coupons introduced?
-Businesses introduce coupons mainly to encourage customers to buy.
-For example:
-Without coupon:
-Customer → "₹1,000 is expensive. I'll think about it." ❌
-With coupon:
-Customer → "Oh! I can get ₹100 off. I'll buy it." ✅
-
-def generate_invoice
-========================================================================>
-
-========================================================================>
-
-
-@router.get("/visits", summary="List Farm/Office visits scoped by the caller's role")
-async def list_visits(
-    x_caller_mobile: Optional[str] = Header(None),
-    verified_mobile: Optional[str] = Depends(get_verified_mobile),
-    from_date: Optional[str] = Query(None, description="Filter by visit from_datetime (ISO), not the lead's upload date"),
-    to_date: Optional[str] = Query(None, description="Filter by visit from_datetime (ISO), not the lead's upload date"),
-    visit_type: Optional[Literal["Farm Visit", "Office Visit"]] = Query(None, description="Filter to one visit type; omit for both"),
-    visited: Optional[bool] = Query(None, description="true = gate-checked-in already happened, false = scheduled but not yet checked in, omit = both"),
-    executive_mobile: Optional[str] = Query(None, description="Restrict to one executive within the caller's scope (e.g. for a Marketing Manager drilling into one team member)"),
-    search: Optional[str] = Query(None, description="Match against the lead's name, mobile, or email"),
-    page: Optional[int] = Query(None, ge=1, description="1-indexed page number. Omit (with page_size) for the full unpaginated list."),
-    page_size: Optional[int] = Query(None, ge=1, le=500, description="Items per page (max 500). Omit (with page) for the full unpaginated list."),
-) -> Dict[str, Any]:
-    """Every lead currently or previously scheduled for a Farm/Office visit,
-    for reporting: how many leads visited vs. are still scheduled, split by
-    visit type, over any date range — with each visit's owning executive and
-    full lead details attached (via db_enrich_assignees, same as GET /leads).
-
-    Scoped exactly like GET /leads: a Marketing Manager sees their whole
-    subtree, a Marketing Lead sees their own scope, a Marketing Executive
-    sees only visits for leads assigned to them.
-    """
-    x_caller_mobile = resolve_caller_mobile(x_caller_mobile, verified_mobile)
-    driver = get_shared_driver()
-    with driver.session() as session:
-        roles = db_roles(session, x_caller_mobile)
-        # Admin/SuperAdmin -> 'org'; marketing roles keep their own scoping;
-        # any other STAFF role reads the whole report. is_staff is resolved
-        # only when it can change the answer, so a marketing caller costs no
-        # extra query.
-        mode = visit_scope_mode(roles, is_staff=False)
-        if mode == "none":
-            require_staff(session, x_caller_mobile)   # 403 unless staff
-            mode = "org"
-
-        subtree = get_subtree(session, x_caller_mobile) if mode == "all" else []
-        mobiles = [x_caller_mobile] + [m["mobile"] for m in subtree]
-        filters = {
-            "from_date": from_date, "to_date": to_date,
-            "visit_type": visit_type, "visited": visited,
-            "executive_mobile": executive_mobile, "search": search,
-        }
-        visits = db_list_visits(session, mobiles, mode, x_caller_mobile, filters)
-
-        counts = {
-            "total": len(visits),
-            "farm_visits": sum(1 for v in visits if v.get("visit_type") == "Farm Visit"),
-            "office_visits": sum(1 for v in visits if v.get("visit_type") == "Office Visit"),
-            "visited": sum(1 for v in visits if v.get("visited")),
-            "not_visited": sum(1 for v in visits if not v.get("visited")),
-        }
-
-        total_count = len(visits)
-        paginate = page is not None or page_size is not None
-        p = page or 1
-        ps = page_size if page_size is not None else total_count
-        if paginate:
-            start = (p - 1) * ps
-            visits = visits[start:start + ps]
-        total_pages = 1 if ps <= 0 else max(1, -(-total_count // ps))
-
-        db_enrich_assignees(session, visits)
-
-    return {"statuscode": 200, "status": "success",
-            "count": len(visits), "total_count": total_count,
-            "page": p, "page_size": ps, "total_pages": total_pages,
-            "counts": counts, "visits": visits}
-========================================================================>
-8. Interview answer
-Q: What is APIRouter in FastAPI?
-APIRouter is used to group related API endpoints and keep the FastAPI application modular and organized.
-Q: What is prefix?
-Prefix adds a common path to all routes inside a router. For example, /payouts makes /history become /payouts/history.
-Q: What are tags?
-Tags are mainly used to group and organize endpoints in Swagger/OpenAPI documentation.
-Q: What is payouts.router?
-It refers to the router object defined inside the payouts module.
-Q: What does include_router() do?
-It registers the routes from an APIRouter with the main FastAPI application.
-
-
-6. Put everything together
-Suppose your payouts.py contains:
-from fastapi import APIRouter
-router = APIRouter(
-    prefix="/payouts",
-    tags=["Payouts"]
-)
-@router.get("/history")
-def get_history():
-    return {"message": "Payout history"}
-@router.post("/create")
-def create_payout():
-    return {"message": "Payout created"}
-And your main.py contains:
-from routers import payouts
-app.include_router(payouts.router)
-The result is:
-                    FastAPI
-                       │
-                       │
-              include_router()
-                       │
-                       ↓
-                payouts.router
-                       │
-             ┌─────────┴─────────┐
-             ↓                   ↓
-       /payouts/history    /payouts/create
-             │                   │
-             └─────────┬─────────┘
-                       ↓
-                    Swagger
-                     /docs
-                       │
-                       ↓
-                   Payouts
-
-========================================================================>
-deleting a node along with the realtionships 
-MATCH (n:FirstDuePayOut)
-detach delete n
-
-========================================================================>
-
-The problem is simply that Git branch names cannot contain spaces.
-You tried:
-git checkout -b "due payout details"
-Git sees the spaces and rejects the branch name.
-Use hyphens or underscores instead
-For your task, I recommend:
-git checkout -b due-payout-details
-Or:
-git checkout -b due_payout_details
-========================================================================>
-
- idempotent create/update behavior means what in telugu idempotentn
-Idempotent అంటే తెలుగులో సింపుల్‌గా:
-ఒకే operation ని ఎన్నిసార్లు చేసినా, చివరికి result ఒకటే ఉండటం.
-🔹 Simple example
-Suppose API:
-PUT /users/101
-Body:
-{
-  "name": "Anil",
-  "age": 22
-}
-ఈ APIని ఒక్కసారి call చేస్తే:
-User 101 → Anil, 22
-మళ్లీ అదే request:
-User 101 → Anil, 22
-మళ్లీ 10 times చేసినా:
-User 101 → Anil, 22
-Result మారదు.
-👉 ఇదే idempotent behavior.
-
-
-when we are returning response we should always return the reposnse in this format only :
-
-return {
-            "statuscode": 500,
-            "status": "error",
-            "message": str(e),
-        } 
-
-return {
-            "statuscode": 200,
-            "status": "success",
-            "message": user deatils updated or created successfully,
-        } 
-
-
-raise HTTPException(
-    status_code=500,
-    detail='Internal error'
-)
+📚 Striver A2Z — Arrays
+🟢 Easy — 14 Problems
+#	Problem
+1	Largest Element in an Array
+2	Second Largest Element in an Array
+3	Check if the Array is Sorted
+4	Remove Duplicates from Sorted Array
+5	Left Rotate Array by One Place
+6	Left Rotate Array by D Places
+7	Move Zeros (to End)
+8	Linear Search
+9	Find the Union of Two Sorted Arrays
+10	Find Missing Number in an Array
+11	Maximum Consecutive Ones
+12	Find the Number That Appears Once
+13	Longest Subarray with Sum K — Positive
+14	Longest Subarray with Sum K — Positive + Negative
+
+Easy = 14
+
+🟡 Medium — 14 Problems
+#	Problem
+15	2 Sum
+16	Sort an Array of 0s, 1s and 2s
+17	Majority Element (> N/2)
+18	Kadane's Algorithm — Maximum Subarray Sum
+19	Print Subarray with Maximum Sum or Kadane's Algorithm — Maximum Subarray Sum both are same 
+20	Stock Buy and Sell
+21	Rearrange Array Elements by Sign
+22	Next Permutation
+23	Leaders in an Array
+24	Longest Consecutive Sequence
+25	Set Matrix Zeroes
+26	Rotate Matrix by 90 Degrees
+27	Print Matrix in Spiral Manner
+28	Count Subarrays with Sum K
+
+Medium = 14
+
+🔴 Hard — 12 Problems
+#	Problem
+29	Pascal's Triangle
+30	Majority Element II (> N/3)
+31	3 Sum
+32	4 Sum
+33	Largest Subarray with Sum 0
+34	Count Subarrays with XOR K
+35	Merge Overlapping Intervals
+36	Merge Two Sorted Arrays Without Extra Space
+37	Find Repeating and Missing Number
+38	Count Inversions
+39	Reverse Pairs
+40	Maximum Product Subarray
+
+Hard = 12
+
+📊 Final Count
+Difficulty	Count
+🟢 Easy	14
+🟡 Medium	14
+🔴 Hard	12
+TOTAL	40
+
+
+
+
+
+
+
+
+1) Largest Element in an Array
+
+class Solution:
+    def largest(self, arr):
+        # code here
+        # return max(arr)  or 
+
+        m1 = arr[0]
+        n = len(arr)
+        for i in range(1,n):
+            if arr[i] > m1 :
+                max = arr[i] 
+        return max         
+        
+-------------------------------------------------------------------------->
+2) Second Largest Element in an Array : 
+
+TCS NQT problem ==> 
+
+Problem: Given an array, find the second largest element without sorting.
+
+Input: arr = [12, 35, 1, 10, 34, 1]
+Output: 34
+
+T.C => O(n) 
+
+
+workflow steps  : 
+
+Short Revision Steps (1-minute)
+
+1) Initialize first and second to -∞.
+2) Traverse every element.
+3) If current element is greater than first:
+3.1) Move first to second.
+3.2) Update first.
+4) Else if current element is greater than second and not equal to first:
+4.1) Update second.
+5) After traversal:
+5.1) If second is still -∞, no second largest exists.
+5.2) Otherwise, return second.
+ 
+
+def second_largest(arr):
+    first_large_ele = float('-inf')
+    second_large_ele = float('-inf')
+
+    for num in arr:
+        if num > first_large_ele:
+            second_large_ele = first_large_ele
+            first_large_ele = num
+        elif num > second_large_ele and num != first_large_ele:
+            second_large_ele = num
+
+    if second_large_ele == float('-inf'):
+        return "No second largest element found"
+    else:
+        return second_large_ele
+
+
+res = second_largest([12, 35, 1, 10, 34, 1])
+print(res)
+
+output : 
+34
+
+
+-------------------------------------------------------------------------->
+Check Sorted Array or : Check if the Array is Sorted 
+
+Given an array arr[], check whether it is sorted in non-decreasing order. 
+Return true if it is sorted otherwise false.
+
+Examples:
+
+Input: arr[] = [10, 20, 30, 40, 50]
+Output: true
+Explanation: The given array is sorted.
+
+Input: arr[] = [90, 80, 100, 70, 40, 30]
+Output: false
+Explanation: The given array is not sorted.
+
+
+class Solution:
+    def isSorted(self, arr):
+        # code here
+        for i in range(len(arr)-1):
+            if arr[i] > arr[i+1]:
+                return False 
+        return True         
+            
+-------------------------------------------------------------------------->
+Remove Duplicates from Sorted Array : 
+
+some other approaches : 
+1) convert list into set and set into list then return 
+2) use the extra list if the element is not present in that list then append then return that list ==> uses extra space of O(n) 
+
+
+workflow steps : 
+i = Index where the next unique element should be placed.
+j = Scan or check every element.
+
+1) Set i = 0 → tracks the last unique element.
+2) Set j = 1 → scans the array.
+3) Compare nums[i] and nums[j].
+4) If same → skip duplicate.
+5) If different → increment i and copy nums[j] to nums[i].
+6) Continue until j reaches the end.
+7) Return i + 1 → number of unique elements.
+------------------------------------------------------------->
+
+def removeDuplicates(nums):
+    i = 0
+    n = len(nums)
+    for j in range(1, n):
+        if nums[i] != nums[j]:
+            i += 1
+            nums[i] = nums[j]
+
+    return nums[:i + 1]
+
+nums = [1,2,3,3,3,4,4,5,6]
+print(removeDuplicates(nums))
 
 output :
-{
-     "detail":'Internal error'
-}
-
+[1, 2, 3, 4, 5, 6]
+
+-------------------------------------------------------------------------->
+
+===> Left Rotate Array by One  : 
+
+Given an integer array nums, rotate the array to the left by one.
+
+Example 1
+Input: nums = [1, 2, 3, 4, 5]
+Output: [2, 3, 4, 5, 1]
+Explanation:
+Initially, nums = [1, 2, 3, 4, 5]
+Rotating once to left -> nums = [2, 3, 4, 5, 1]
+
+Example 2
+Input: nums = [-1, 0, 3, 6]
+Output: [0, 3, 6, -1]
+
+Explanation:
+Initially, nums = [-1, 0, 3, 6]
+Rotating once to left -> nums = [0, 3, 6, -1]
+
+
+workflow steps  : 
+1. Get the length of the array.
+2. Store the first element in a temporary variable.
+3. Traverse from index 1 to n-1.
+4. Shift every element one position to the left.
+5. Place the stored first element at the last index.
+6. Return the rotated array (if required).
+
+class Solution:
+    def rotateArrayByOne(self, nums):
+        n = len(nums)
+        temp = nums[0]
+        for i in range(1,n):
+            nums[i-1] = nums[i]
+        nums[n-1] = temp    
+------------------------------------------------------------------------>
+workflow steps  : 
+
+1. Get the length of the array.
+2. Store the last element in a temporary variable.
+3. Loop from the second last element to the first element.
+4. Shift each element one position to the right.
+5. Place the stored last element at the first(0th index) index.
+6. Return the rotated array.
+
+def right_rotate_by_one_position(nums):
+   n = len(nums)    
+   temp = nums[-1]
+   for i in range(n-2,-1,-1):
+       nums[i+1] = nums[i]
+   nums[0] = temp
+   return nums
+    
+print(right_rotate_by_one_position([1,2,3,4,5,6,7]))             
+-------------------------------------------------------------------------->
+===================================================================================================================================================================>
+===> Left Rotate Array by K Places 
+
+Example 1
+Input: nums = [1, 2, 3, 4, 5, 6], k = 2
+Output: nums = [3, 4, 5, 6, 1, 2]
+
+Explanation:
+rotate 1 step to the left: [2, 3, 4, 5, 6, 1]
+rotate 2 steps to the left: [3, 4, 5, 6, 1, 2]
+
+
+Example 2
+Input: nums = [3, 4, 1, 5, 3, -5], k = 8
+Output: nums = [1, 5, 3, -5, 3, 4]
+
+Explanation:
+rotate 1 step to the left: [4, 1, 5, 3, -5, 3]
+rotate 2 steps to the left: [1, 5, 3, -5, 3, 4]
+rotate 3 steps to the left: [5, 3, -5, 3, 4, 1]
+rotate 4 steps to the left: [3, -5, 3, 4, 1, 5]
+rotate 5 steps to the left: [-5, 3, 4, 1, 5, 3]
+rotate 6 steps to the left: [3, 4, 1, 5, 3, -5]
+rotate 7 steps to the left: [4, 1, 5, 3, -5, 3]
+rotate 8 steps to the left: [1, 5, 3, -5, 3, 4]
+
+brute force actaully the T.C is optimized but is using the extra space i.e temp array 
+T.C => O(n) 
+S.C => O(n)
+
+class Solution:
+    def left_rotateArray(self, nums, k: int) -> None:
+        n = len(nums)
+        k = k % n
+        temp = []  
+        # create temp list which contains the elements which we have to shift to last of the array or list 
+        for i in range(k):
+            temp.append(nums[i])
+        # Shift remaining elements to the left    
+        for i in range(k , n):
+            nums[i-k] = nums[i]
+        # Copy temp elements to the end
+        for i in range(k):
+            nums[n-k+i] = temp[i]
+---------------------------------------------------------------------->
 
-| విషయం                           | Meaning                                                         | Simple memory                |
-| ------------------------------- | --------------------------------------------------------------- | ---------------------------- |
-| **Caste/Community Certificate** | మీరు ఏ communityకి చెందినవారో చూపిస్తుంది                       | "నేను ఏ community?"          |
-| **OBC**                         | మీ community OBC categoryలో ఉందని చూపిస్తుంది                   | "నా category OBC"            |
-| **OBC-NCL**                     | OBC + Non-Creamy Layer eligibility                              | "OBC + NCL"                  |
-| **Financial Year**              | 1 Apr → 31 Mar income period                                    | "Income earn చేసే period"    |
-| **Assessment Year**             | Old tax systemలో previous FY incomeకి సంబంధించిన following year | "Old system assessment year" |
-| **Tax Year**                    | New systemలో 1 Apr → 31 Mar tax period                          | "New system's year"          |
-
-
+==> optimal without using the space complexity :
+T.C => O(n) 
 
-Sure. This line looks complicated because of the for and tuple syntax, but the idea is very simple.
-for name, value in (("from_date", from_date), ("to_date", to_date)):
-Simple meaning
-It means:
-Take these two pairs one by one, and put the first value into name and the second value into value.
-
-
-strip() అంటే తెలుగులో “అవసరం లేని ముందు/వెనుక ఖాళీలను తొలగించడం” అని అర్థం.
-Python లో:
-name = "   Anil Kumar   "
-name = name.strip()
-print(name)
-Output:
-Anil Kumar
-
-
-
-
- Apps like Uber, Rapido, food-delivery apps, and some package-tracking systems
-   don't need you to manually refresh because the server can push new information to your app.'
-   '
-Uber has publicly described moving from polling/refreshing toward bi-directional streaming
- for real-time experiences. Its developer documentation also shows periodic driver-location updates 
- containing latitude, longitude, heading, and timestamp
-
-
-1. Real-life example
-
-Suppose you order biryani.
-
-You see:
-📍 Restaurant
-🛵 Delivery boy
-🏠 Your home
-
-The delivery boy starts moving.
-
-His phone might continuously obtain something like:
-7:30:00
-Latitude: 17.4400
-Longitude: 78.3900
-
-7:30:04
-Latitude: 17.4410
-Longitude: 78.3910
-
-7:30:08
-Latitude: 17.4420
-Longitude: 78.3920
-
-Those coordinates are sent to the backend.
-
-Your phone receives the latest coordinates and moves the delivery-bike marker.
-
-2. Very simple architecture
-        DELIVERY BOY
-        Mobile App
-             │
-             │ GPS location
-             ↓
-       ┌─────────────┐
-       │   Backend   │
-       │             │
-       │ Location    │
-       │ Service     │
-       └──────┬──────┘
-              │
-              │ real-time push
-              ↓
-        CUSTOMER APP
-              │
-              ↓
-        🛵 Marker moves
-
-This happens continuously while the order/trip is active.
-
-3. What happens inside the delivery boy's phone?
-'
-'The phone has GPS/location services.
-'
-'For example:
-'
-'GPS
- ↓
-17.4400, 78.3900
-
-The delivery app takes this information.
-
-It may send something similar to:
-{
-    "delivery_id": "D123",
-    "latitude": 17.4400,
-    "longitude": 78.3900,
-    "timestamp": 123456789
-}
+simple example tracing  : 
+[1,2,3,4,5]  => left shift by 3 places 
+reverse 1st 3 elemets => [3,2,1] 
+reverse last n-k elements => [5,4]
+[3,2,1,5,4] ==> reverse this the entire array ==> [4,5,1,2,3]
 
+class Solution:
+    def left_rotateArray(self, nums, k: int) -> None:
+        k = k%len(nums)
+        nums[:k] = reversed(nums[:k])
+        nums[k:] = reversed(nums[k:])
+        nums.reverse()
 
-The exact implementation varies by company, but this is the basic idea.
 
-Uber's documented location events similarly contain coordinates, direction/bearing and timestamps.
-'
-'The customer app doesn't continuously refresh the page. A persistent real-time connection such as WebSocket or streaming is used so that the backend can push new location events to the customer whenever the driver's location changes  
-'
-'
-'10. Why Redis is useful
-'
-'Imagine you have:
-10 lakh active delivery people
-You frequently need:
-"Where is delivery boy D45 RIGHT NOW?"
 
-You don't necessarily want to query a heavy relational database every few seconds.
-Instead:
+===================================================================================================================================================================>
+189. Rotate Right Array by k places : 
 
-Redis
- ↓
-D45 → current lat/lon
-Fast lookup.
-And when a new location arrives:
+Example 1:
+Input: nums = [1,2,3,4,5,6,7], k = 3
+Output: [5,6,7,1,2,3,4]
 
-OLD
-17.4400, 78.3900
-        ↓ update
-NEW
-17.4410, 78.3910
-
-For live tracking, the current location is often more important than storing every single GPS point in the main transactional database.
-
-11. What about the ETA?
-This is another interesting part.
-Suppose:
-Delivery boy
-     🛵
-      ↓
-      ↓ 3.2 km
-      ↓
-     🏠
-Backend/map-routing systems can calculate things like:
-Distance = 3.2 km
-ETA = 12 minutes
-As the location changes:
-3.2 km → 2.8 km → 2.3 km → 1.7 km → 800 m
-ETA can also be recalculated.
-So you see:
-12 min
- ↓
-10 min
- ↓
-8 min
- ↓
-5 min
- ↓
-2 min
-
-
-9. Where does Kafka come into this?
-
-At large scale, there can be thousands or millions of location updates.
-
-For example:
-Delivery Boy 1 → location
-Delivery Boy 2 → location
-Delivery Boy 3 → location
-Delivery Boy 4 → location
-...
-Delivery Boy 1 → location
-Delivery Boy 2 → location
-
-Handling all this directly through one server is difficult.
-
-A message/streaming system such as Kafka can be used to distribute the incoming events.
-
-Conceptually:
-                 ┌── Location Service
-                 │
-Drivers → Gateway → Kafka
-                 │
-                 ├── Matching Service
-                 │
-                 └── Analytics
-
-Important: Kafka isn't required for every real-time application. '
-'It's one possible component when scale and event processing require it
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-GPS stands for Global Positioning System. 
-It is a satellite-based positioning system that allows a receiver such as a smartphone to 
-determine its position and precise time. It works by receiving signals from multiple 
-satellites and calculating the receiver's position based on the signal travel times. '
-'Applications such as navigation, ride-sharing, delivery tracking, logistics, emergency services '
-'and surveying use this location information.  '
-''
-'
-GPS gives the location. The map gives the meaning of that location.
-"GPS gives me Google Maps."  
-GPS  ↓ "I am at latitude X, longitude Y"  ↓ Map  ↓ "This coordinate is Madhapur, Hyderabad"  ↓ Routing  ↓ "Take this road to reach Gachibowli"     
-GPS
-Where am I?
-Map
-What is at this location?
-Routing
-How do I get from A → B?
-Traffic system
-Which route is currently faster?  
-1. What problem did GPS solve?
-Imagine there is no GPS.
-You are in Hyderabad and someone tells you:
-"Go to a new village 150 km away."
-You have a few problems:
- Where exactly am I? 
- Which road should I take? 
- Am I going in the correct direction? 
- Where is the destination? 
- How far away am I? 
- How long will it take? 
- If I get lost, how can someone find me? 
-Humans historically used landmarks, maps, compasses, stars, road signs, etc. GPS made it possible for a device to determine its position, navigation information, and precise time using satellite signals. 
-🧠 The core problem GPS solves:
-"I need to know WHERE something is."
-That's the intuition you should remember.
-2. What exactly is GPS?
-GPS = Global Positioning System.
-It is a system of satellites + ground control + receivers.
-Your phone contains a GPS receiver.
-Satellites continuously broadcast signals containing information about their position and precise time. Your phone receives signals from multiple satellites and calculates its own position. 
-Very simplified:
-        🛰️ Satellite
-             \
-              \
-        🛰️ ---- 📱 Your phone
-              /
-             /
-        🛰️
-Your phone asks mathematically:
-"Based on the signals I received from these satellites, where am I?"
-3. The intuition — imagine 3 friends
-Forget satellites for a moment.
-Imagine three friends are standing at known locations:
-Friend A 📍
-          \
-           \
-            📱 You
-           /
-          /
-Friend B 📍
-       Friend C 📍
-Friend A tells you:
-"You are 5 km away from me."
-Friend B:
-"You are 7 km away from me."
-Friend C:
-"You are 3 km away from me."
-Using those distances, you can narrow down your position.
-GPS does something conceptually similar, except the reference points are satellites, and the distances are calculated from the travel time of their radio signals. A GPS receiver normally uses signals from at least four satellites to solve for position and time. 
-4. Why does GPS need satellites?
-Because satellites provide known reference points around Earth.
-Think:
-             🛰️
-              |
-              |
-🛰️ -------- 🌍 -------- 🛰️
-              |
-              |
-             🛰️
-The satellites know:
-My position = X
-My time     = Y
-Your phone receives their signals.
-Then it calculates:
-Satellite 1 → distance from me
-Satellite 2 → distance from me
-Satellite 3 → distance from me
-Satellite 4 → distance from me
-From those measurements:
-             ↓
-       📱 Your phone
-             ↓
-Latitude
-Longitude
-Altitude
-Time
-The FAA explains that the receiver uses the signal's travel time to estimate distance from the satellites and uses four satellites to determine latitude, longitude, altitude and time. 
-5. What if GPS didn't exist?
-This is where the concept becomes very easy.
-Imagine today's world without GPS.
-🚕 Uber/Rapido
-Driver says:
-"I don't know exactly where the passenger is."
-Passenger says:
-"I'm standing somewhere near this building."
-The system has much less precise location information.
-Today:
-Passenger
-   ↓
-📱 Location
-   ↓
-Backend
-   ↓
-Driver
-The driver can see where the passenger is.
-🍔 Food delivery
-Without location:
-Customer:
-"Come to my house."
-Delivery person:
-"Where exactly?"
-Customer:
-"Near the blue building."
-😅
-With location:
-Customer 📍
-      ↓
-Backend
-      ↓
-Delivery person 🛵
-The delivery person can navigate to the customer's location.
-🗺️ Google Maps
-Without positioning:
-You:
-"Where am I on this map?"
-The map knows the roads, but your phone needs a way to determine your current position.
-GPS provides the positioning information; mapping software then puts that position onto a digital map. 
-So remember:
-GPS gives the location. The map gives the meaning of that location.
-6. Very important distinction for interviews
-Don't say:
-"GPS gives me Google Maps."
-❌ Not exactly.
-Think:
-GPS
- ↓
-"I am at latitude X, longitude Y"
- ↓
-Map
- ↓
-"This coordinate is Madhapur, Hyderabad"
- ↓
-Routing
- ↓
-"Take this road to reach Gachibowli"
-There are multiple systems working together.
-GPS
-Where am I?
-Map
-What is at this location?
-Routing
-How do I get from A → B?
-Traffic system
-Which route is currently faster?
-7. Real-world use cases
-GPS is much bigger than Google Maps.
-🚗 1. Navigation
-Car
- ↓
-GPS
- ↓
-Current location
- ↓
-Navigation app
- ↓
-Route
-Used in cars, bikes, aircraft, ships, etc. GPS is widely used for land, sea and air navigation. 
-🛵 2. Uber / Rapido
-Driver phone
-    ↓
-GPS
-    ↓
-Current location
-    ↓
-Backend
-    ↓
-Customer app
-This enables location-based matching and live tracking.
-🍕 3. Food delivery
-Delivery partner
-      ↓
-GPS location
-      ↓
-Backend
-      ↓
-Customer
-You can see approximately where your delivery partner is.
-📦 4. Package tracking
-GPS/location technologies can support package tracking and logistics/supply-chain management. 
-For example:
-Truck 🚚
- ↓
-Location
- ↓
-Logistics backend
- ↓
-Tracking system
-🚑 5. Emergency services
-Suppose someone needs an ambulance.
-Instead of:
-"I'm somewhere near this road."
-The system can obtain location information and help responders identify where assistance is needed.
-GPS is used in emergency response to help locate vehicles and people and reduce dispatch delays. 
-✈️ 6. Aviation
-Aircraft use satellite navigation systems for positioning and navigation. GPS is one of the major GNSS systems used for this purpose. 
-🚢 7. Ships
-A ship in the ocean doesn't have buildings and road signs everywhere.
-🌊 🌊 🌊 🌊
-      🚢
-🌊 🌊 🌊 🌊
-GPS provides positioning information.
-10. What happens if GPS is unavailable?
-This is a good interview edge case.
-Suppose the delivery boy goes somewhere with poor GPS reception.
-The application may have difficulty obtaining an accurate GPS position.
-Modern phones can also use other location sources such as Wi-Fi and cellular networks as part of broader location services. For example, Android's Emergency Location Service can combine GPS, Wi-Fi and cellular information. 
-So don't think:
-No GPS = phone has absolutely no idea where it is.
-Instead:
-GPS
- +
-Wi-Fi
- +
-Cellular
- +
-Other sensors
-       ↓
-Location service
-The exact combination depends on the device and application.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Good — now we can clearly see the problem.
-1. Your changes are still in the working directory
-git status says:
-modified: routers/order_tracking.py
-modified: routers/purchases.py
-So the previous git stash did not leave your working tree clean.
-That's why Git still refuses:
-git checkout farmincentives
-because routers/purchases.py would be overwritten.
-2. You have many stashes
-You currently have:
-stash@{0}
-stash@{1}
-stash@{2}
-stash@{3}
-stash@{4}
-...
-stash@{8}
-It looks like you repeatedly clicked/ran Stash in VS Code, creating multiple stash entries.
-The important one from your earlier command is:
-stash@{4}: On due_payout_details: WIP due payout details
-The newer ones are:
-stash@{0}: WIP on due_payout_details: ca4de56 added onboarded details in due payouts
-stash@{1}: WIP on due_payout_details: ca4de56 added onboarded details in due payouts
-...
-Don't pop/apply any stash yet
-Because your current working directory still has changes, don't run:
-git stash pop
-or:
-git stash apply
-yet.
-First, let's identify which stash contains your latest changes.
-Run:
-git stash show --stat stash@{0}
-then:
-git stash show --stat stash@{1}
-and:
-git stash show --stat stash@{4}
-You should get something like:
- routers/order_tracking.py | ...
- routers/purchases.py      | ...
-Most important
-Do not delete any stash.
-Also don't run:
-git reset --hard
-because your changes are valuable.
-Once we identify the correct stash, we can safely do:
-current changes
-       ↓
-make working tree clean
-       ↓
-switch to farmincentives
-       ↓
-do your work there
-       ↓
-switch back to due_payout_details
-       ↓
-restore your due-payout work
-Send me the output of these three commands:
-git stash show --stat stash@{0}
-git stash show --stat stash@{1}
-git stash show --stat stash@{4}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-how to get the remote repo url to clone the code using already connected vscode url 
-
-(.venv) PS C:\Users\DELL\OneDrive\Desktop\markwave_live_services> git remote -v
-origin  https://github.com/markwaveai/markwave_live_services.git (fetch)
-origin  https://github.com/markwaveai/markwave_live_services.git (push)
-(.venv) PS C:\Users\DELL\OneDrive\Desktop\markwave_live_services>
-
-"Show me the remote repositories connected to this local Git repository, along with their URLs."
-
-
-
-python -m venv .venv 
-
-Quick mental model
-Project folder
-     │
-     └── .venv
-          │
-          └── Scripts
-                └── Activate.ps1
-Activate:
-.\.venv\Scripts\Activate.ps1
-Deactivate:
-deactivate
-
-
-
-
-Yes, this command is correct:
-
-pip freeze > requirements.txt
-
-What does it do?
-
-It takes all the Python packages installed in your currently active 
-virtual environment and writes them into requirements.txt.
-
-For example, if your .venv contains:
-fastapi
-uvicorn
-neo4j
-pydantic
-firebase-admin
-cryptography
-
-then:
-
-pip freeze > requirements.txt
-
-creates/overwrites:
-
-requirements.txt
-
-with something like:
-fastapi==...
-uvicorn==...
-neo4j==...
-pydantic==...
-firebase-admin==...
-cryptography==...
-Important for your project
-First activate your .venv:
-
-note : It will overwrite the existing file. It will not create a duplicate.   
-
-
-
-
-
-(.venv) PS C:\Users\DELL\Downloads\markwave_live_services_Downloads> python -m uvicorn app:app --port 8001
-
-
-
-If you wanted to add to the existing file instead, PowerShell uses:
-
-pip freeze >> requirements.txt
-
-Here:
-
-> → overwrite
->> → append to existing file
-
-For requirements.txt, normally you want:
-
-pip freeze > requirements.txt
-
-Yes, you can run multiple FastAPI projects on the same computer,
- including one from VS Code and another from Antigravity.
-
-But you cannot run two servers on the same IP + port combination.
-
-Your error is:
-[Errno 10048] error while attempting to bind on address
-('127.0.0.1', 8000)
-
-This means:
-Port 8000 is already being used by another process.
-
-
-INFO:     127.0.0.1:61363 - "GET /docs HTTP/1.1" 401 Unauthorized
-INFO:     127.0.0.1:62254 - "GET /docs HTTP/1.1" 200 OK
-INFO:     127.0.0.1:62254 - "GET /openapi.json HTTP/1.1" 200 OK
-
-
-
-Set | = combine two sets and keep unique values.    
- For integers, | means bitwise OR, which is a different concept.  
-Example:
-{1, 2, 3} | {3, 4, 5}
-Result:
-{1, 2, 3, 4, 5}
-
-
-
-
-6. Interview answer
-If interviewer asks:
-"What is Periskope?"
-You can say:
-"Periskope is a WhatsApp business communication management platform. It provides a shared inbox where multiple team members can manage WhatsApp conversations, assign chats, create tickets, track responses and automate workflows. It is useful when a company has many WhatsApp conversations, numbers, groups or employees and needs centralized visibility and accountability."
-"Why do we need it?"
-"Normal WhatsApp is mainly designed for communication, whereas businesses need team-level features such as ownership, assignment, conversation history, ticketing, analytics and automation. Periskope provides those capabilities around WhatsApp."
-"What happens without it?"
-"As the team grows, messages can be missed, multiple employees may respond to the same customer, ownership becomes unclear, managers have limited visibility, and handovers become difficult."
-🧠 One-minute memory trick
-Remember S-S-G:
-Letter	Use case	Problem
-S	Sales	Who is handling the customer?
-S	Support	Who will resolve the problem?
-G	Groups	How do we manage hundreds of conversations?
-
-
-
-WITH lets you calculate something once, give it a name, 
-and carry that named result into the next stage.
-
-WITH = calculate once → give a name → reuse it in the next stage.   
-
-See the difference
-❌ Without WITH
-MATCH (p:Person)
-WHERE p.age + 10 > 30
-RETURN p.name, p.age, p.age + 10 AS future_age
-
-
-Calculation:
-p.age + 10  ← written here
-p.age + 10  ← written again
-
-
-✅ With WITH
-
-
-MATCH (p:Person)
-WITH p.name AS name,
-     p.age AS current_age,
-     p.age + 10 AS future_age
-WHERE future_age > 30
-RETURN name, current_age, future_age
-
-
-usecaselesss using the only return statement : 
-
-
-give that example  : 
-(u:User) 
-return u.name 
-
-
-uisikng with  : 
-(u:User) 
-with u.name as user_name
-return user_name 
-
-
-
-
-
-
-
-
-
-
-
-
-
-Your problem is:
-"I'm tracing sales_report() → db_sales_report_aggregate() → "
-"some helper. I reached a function. Now I want to go back to the exact"
-" caller/line from which I came, not see 100 references and manually find it."
-
-
-The trick: use Alt + Left — not Find All References.
-
-VS Code maintains a navigation history.
-For example, you are tracing:
-
-sales_report()
-    │
-    │ Ctrl + Click
-    ↓
-db_sales_report_aggregate()
-    │
-    │ Ctrl + Click
-    ↓
-_apply_lead_type()
-    │
-    │ Ctrl + Click
-    ↓
-some_helper()
-
-
-Now you are inside:
-def some_helper():
-
-You want to go back to exactly where you came from.
-
-Press:
-Alt + Left
-
-You go directly to:
-_apply_lead_type(
-    db_sales_report_aggregate(...)
-)
+Explanation:
+rotate 1 steps to the right: [7,1,2,3,4,5,6]
+rotate 2 steps to the right: [6,7,1,2,3,4,5]
+rotate 3 steps to the right: [5,6,7,1,2,3,4]
 
-Then:
-Alt + Left
 
-You go directly to:
-db_sales_report_aggregate(...)
-inside sales_report().
+Example 2:
+Input: nums = [-1,-100,3,99], k = 2
+Output: [3,99,-1,-100]
 
+Explanation: 
+rotate 1 steps to the right: [99,-1,-100,3]
+rotate 2 steps to the right: [3,99,-1,-100]
+------------------------------------------------------>
+brute force approach : 
+T.C => O(n) 
+S.C => O(k)
 
-Then:
+Better Solution (Same as Striver's Image)
+from typing import List
 
-Alt + Left
+class Solution:
+    def right_rotate(self, nums: List[int], k: int) -> None:
+        n = len(nums)
 
-You go back to the previous location in sales_report().
+        k = k % n
 
-This is the important difference
-Shift + F12
-Means:
-"Show me EVERYWHERE this function is used."
+        # Store last k elements
+        temp = []
+        for i in range(n - k, n):
+            temp.append(nums[i])
 
-If there are 100 references → you'll get 100 references.
-That's useful when you want to understand all callers.
-'
-'Alt + Left
-Means:
-"Take me back to EXACTLY where I was before."
-That's what you want while tracing one particular flow.
-Even better: use Alt + Right
-Suppose:
-sales_report
-   ↓
-db_sales_report_aggregate
-   ↓
-helper
-You press:
+        # Shift remaining elements to the right
+        for i in range(n - k - 1, -1, -1):
+            nums[i + k] = nums[i]
 
-Alt + Left
-and go:
-helper
-   ↑
-db_sales_report_aggregate
+        # Copy temp elements to beginning
+        for i in range(k):
+            nums[i] = temp[i]
 
 
-Then accidentally went too far back.
-Press:
+Dry Run
+nums = [1,2,3,4,5,6,7]
+k = 3
+n = 7
+Step 1
 
-Alt + Right
-and VS Code moves forward again.
-So:
-Alt + Left   = Back
-Alt + Right  = Forward
+Store last k elements.
 
+temp = [5,6,7]
+Step 2
 
+Shift remaining elements to the right.
 
+i = 3
+nums[6] = nums[3]
+[1,2,3,4,5,6,4]
 
-When tracing a backend API, don't try to understand every helper function first.'
-' First understand the API's business functionality and main flow, then trace helpers only when 
-the main flow reaches them.
+i = 2
+nums[5] = nums[2]
+[1,2,3,4,5,3,4]
 
+i = 1
+nums[4] = nums[1]
+[1,2,3,4,2,3,4]
 
+i = 0
+nums[3] = nums[0]
+[1,2,3,1,2,3,4]
+Step 3
 
-Think of it like this:
-1. What does this API do?
-        ↓
-2. What comes into the API?
-        ↓
-3. What should it return?
-        ↓
-4. What is the main flow?
-        ↓
-5. Which helper functions are called?
-        ↓
-6. Only then understand those helpers
+Copy temp back.
 
+nums[0] = 5
+nums[1] = 6
+nums[2] = 7
 
+Final
 
-Continue   
+[5,6,7,1,2,3,4]
+Complexity
+Time: O(n)
+Space: O(k)
 
-⚠️ Gemini Code Assist   
+This is exactly the Better Solution shown in the TUF video.
 
-🟢 1. GitHub Copilot Free — easiest option  
 
 
+------------------------------------------------------------------------------->
+optimal approch here : 
+T.C => O(n) 
+S.C => O(1) 
 
-Health insurance = "What if I get hospitalized?"
-Term insurance = "What if I die and my family loses my income?"
-Life insurance = broader category of insurance covering human life; term insurance is one type.
-========================================================================>
-removed 
+class Solution:
+    def right_rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        n = len(nums)
+        k = k % n
+        # Reverse the first n-k elements
+        nums[:n-k] = reversed(nums[:n-k])
 
+        # Reverse the last k elements
+        nums[n-k:] = reversed(nums[n-k:])
 
+        # Reverse the entire array
+        nums.reverse()
 
-2. People confuse "I recognize it" with "I can recall it"
 
-This is one of the biggest problems.
+Dry Run  : 
 
-You read your notes:
-"FastAPI uses dependency injection through Depends()."
+nums = [1,2,3,4,5]
+k = 3
 
-You think:
-"Yeah, I know this."
+Step 1: Reverse first n-k = 2 elements
+[2,1,3,4,5]
 
-But during an interview:
+Step 2: Reverse last k = 3 elements
+[2,1,5,4,3]
 
-Interviewer: "Why did you use Depends(get_verified_mobile) here?"
-
-Suddenly:
-Brain: ..............
-
-
-
-
-The configuration is stored in a singleton Neo4j node:   
-
-singleton measn what  here 
-Here, singleton simply means:
-
-There should be only ONE configuration node for the entire application.
-
-In your code:
-MATCH (c:MarketingOnboardConfig {id: $id})
-
-The id is used to identify that one configuration node.
-
-Think of a real-world example
-
-Imagine your company has one main office notice board:
-Company
-   ↓
-Main Notice Board
-   ↓
-Marketing onboarding settings
-
-
-before creating the branch we should always do the following steps to avoid any conflicts with the main branch :
-we should ask from which branch to take the latest pull becaz in that branch only this branch is going to be pushed 
-Get latest main → create new branch from latest main → work on it → push it to GitHub 
-
-Complete sequence
-If you're currently on main and have no uncommitted changes, the whole process is:
-git switch main or staging_live
-git pull origin main or staging_live 
-git switch -c new_due_payout_deatls
-# Make your code changes
-git status
-git add .
-git commit -m "Add new due payout details"
-git push -u origin new_due_payout_deatls
-
-
-how to revert the new changes in the antigravity or else github copilot : 
-stop and reverest the changes and 1st delete that chat using the rvert that symbol 
-
-tell chatbot to add a single hi line in the file and delete that chat now observer wheather is it working or not 
-
-how to dlete a brach   :
-git branch -d due_payout_details 
-
-
-
-
-One important thing to understand
-
-The word assert means:
-"I expect this condition to be true."
-
-The assert keyword is used to check whether something is true.
-In simple words:
-assert = "I expect this to be true. If it is not true, tell me the test failed."
-Simple example
-x = 10
-assert x == 10
-Here Python checks:
-Is x equal to 10?
-       ↓
-      YES ✅
-       ↓
-Continue
-Nothing happens because the condition is true.
-But:
-x = 10
-assert x == 20
-Python checks:
-Is x equal to 20?
-       ↓
-       NO ❌
-       ↓
-AssertionError
-So assert is mainly useful for checking assumptions and testing code.
-Why was assert introduced?
-The main idea is to catch problems automatically instead of manually checking every result.
-For example, without assert:
-result = add(10, 20)
-print(result)
-You have to look at the output and decide:
-30
-Is that correct? You manually check it.
-With assert:
-result = add(10, 20)
-assert result == 30
-Now Python automatically checks it.
-result = 30
-       ↓
-30 == 30
-       ↓
-   True ✅
-       ↓
- Test passes
-If your function accidentally returns 40:
-result = 40
-       ↓
-40 == 30
-       ↓
-   False ❌
-       ↓
-AssertionError
-
-
-
-
-10. Your interview answer
-If interviewer asks:
-Q: How do you identify which API a frontend application is calling?
-You can say:
-"For a web application, I open Chrome DevTools and go to the Network tab. When I perform the action in the UI, I can see the HTTP request, including the URL, method, request payload, headers, status code, and response. The API does not need to be explicitly configured to appear in the Network tab; the browser automatically records network requests made by the application."
-That's a strong interview answer.
-Q: Does the developer explicitly tell Chrome to display the API in Network?
-Answer:
-"No. The frontend code makes the HTTP request using mechanisms such as fetch or Axios. Chrome DevTools automatically captures and displays those network requests when the Network tab is open."
-Q: How do you debug an API issue coming from a mobile application?
-Answer:
-"First, I identify which API the mobile application is calling, using application logs, network inspection tools, or information from the mobile team. Then I check the API request, status code, backend logs, and trace the corresponding endpoint and service logic in the backend. Finally, I check the database queries and identify where the error occurs."
-Q: How do you trace a frontend issue to the backend?
-Remember this simple flow:
-UI action
-   ↓
-API request
-   ↓
-Endpoint
-   ↓
-Backend function
-   ↓
-Business logic
-   ↓
-Database
-   ↓
-Response
-   ↓
-UI
-
-
-
-Assertion అంటే Telugu లో “దృఢమైన ప్రకటన”, “నిశ్చయంగా చెప్పడం”, లేదా “వాదన/ప్రకటన” అని అర్థం.
-Simple meaning:
-Assertion = ఒక విషయం నిజమని గట్టిగా చెప్పడం
-Example:
-He made an assertion that he was innocent.
-→ తాను నిర్దోషినని అతను గట్టిగా చెప్పాడు.
-Programming లో:
-Python లో assertion అంటే ఒక condition నిజమా కాదా అని check చేయడం.
+Step 3: Reverse entire array
+[3,4,5,1,2]
 
-
+This is the correct right rotation by 3 places.
 
-10. Your interview answer
-If interviewer asks:
-Q: How do you identify which API a frontend application is calling?
-You can say:
-"For a web application, I open Chrome DevTools and go to the Network tab."
-" When I perform the action in the UI, I can see the HTTP request, including the URL, method, request payload,"
-" headers, status code, and response. The API does not need to be explicitly configured to appear in the Network tab; "
-"the browser automatically records network requests made by the application."
+-------------------------------------------------------------------------------->
+===> without using the reverse inbuilt function  : 
 
+# class Solution:
+def reverse(nums, start, end):
+    while start < end:
+        nums[start], nums[end] = nums[end], nums[start]
+        start += 1 # we have to indrease the start variable 
+        end -= 1 # we have to decreasae the end 
 
-That's a strong interview answer.
-'
-'Q: Does the developer explicitly tell Chrome to display the API in Network?
-Answer:
-"No. The frontend code makes the HTTP request using mechanisms such as fetch or Axios. 
-Chrome DevTools automatically captures and displays those network requests when the Network tab is open.
-
-
-
-why the functins are created than  writtten the alreayd written code a lot times 
-=> 
-
-
-leetcode 
-ml 
-reactjs file reading 
-flutter leactures 
-js content taking 
-fast api intterview questions in youtube and contentn prepararion 
-fast crud apis writting 
-neo4j queries writting  
-
-
-only open the app whe you do have the work over there complete that work come to work bush 
-
-we are employees with zero salries of youtube , whatsapp , facebook , insta , twitter ex : potographers . editors etc.  adn making them rich 
-
-we are 
-
-tricks :
-
-turnoff notificatiosns :
-when we to go there then we should go we should not go if someone is calling us 
-
-distance : hide app in another folders 
+def left_rotateArray(nums, k):
+    n = len(nums)
+    k = k % n
+
+    # Reverse first k elements
+    reverse(nums, 0, k - 1) # we have to pass the exact index values to the reverse function
 
-reminders to stop the application 
-
-using the 3 accounts for each purpose to give the goood feed to it 
-
-passion 
-obsession 
-addition 
-
-🔴 3. Addiction   : 
-"I don't want to do it, but I feel unable to stop."   
-
-⚡ 2. Obsession
-Obsession = "I keep thinking about it."
-You may still have some control, but the activity starts occupying your mind excessively. 
-
-🔥 1. Passion
-Passion = "I really want to do this."
-Then you stop and go to sleep.
-I WANT TO DO IT
-       ↓
-I DO IT
-       ↓
-I CAN STOP
-That's passion.
-
-
-
-
-For a Flutter application, there is no browser Network tab by default, 
-but Flutter developers have several ways to trace the API calls.
-
- 1. The easiest way: Flutter/Android Studio logs
-If the Flutter app uses packages such as dio or http, developers commonly add request/response logging.
-For example, with Dio:
-
-final dio = Dio();
-dio.interceptors.add(
-  LogInterceptor(
-    request: true,
-    requestHeader: true,
-    requestBody: true,
-    responseBody: true,
-    responseHeader: true,
-    error: true,
-  ),
-);
-
-Then when you perform an action in the app, the console may show:
-
-REQUEST:
-
-POST https://api.example.com/api/orders
-
-Request Body:
-{
-  "product_id": 123,
-  "quantity": 2
-}
-
-RESPONSE:
-200
-
-Response:
-{
-  "status": "success",
-  "order_id": 456
-}
-So you immediately know:
-Flutter Action
-     ↓
-Dio request
-     ↓
-POST /api/orders
-     ↓
-Backend
-     ↓
-Response
-
-3. Flutter DevTools
-Flutter also has Dart DevTools, which is useful for debugging the application.
-You can inspect things such as:
- logs 
- exceptions 
- performance 
- network-related information depending on the setup 
- application behavior 
-However, in day-to-day API debugging, HTTP logging/interceptors are often much simpler.
-
-
-
-
-
-
-Encoding = converting information FROM its original form INTO another representation.
-Decoding = converting that representation BACK into a usable/original form. 
-
-Encoding = Pack the information 📦
-Decoding = Unpack the information 📦 → 📄
-
-1. Simple real-life example 🗣️
-
-Suppose I have:
-"HELLO"
-
-I convert it into numbers:
-H → 8
-E → 5
-L → 12
-L → 12
-O → 15
-So:
-
-HELLO
+    # Reverse remaining elements
+    reverse(nums, k, n - 1)
+
+    # Reverse entire array
+    reverse(nums, 0, n - 1)
+    print(nums)
+
+left_rotateArray([1,2,3,4,5,6,7],3)
+
+
+output :
+[4, 5, 6, 7, 1, 2, 3]
+-------------------------------------------------------------------------------->   
+
+===================================================================================================================================================================>
+283. Move Zeroes
+
+Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+Note that you must do this in-place without making a copy of the array.
+
+Example 1: take this example to understnad this problem very well 
+Input: nums = [0,1,0,3,12]
+Output: [1,3,12,0,0]
+
+Example 2:
+Input: nums = [0]
+Output: [0]
+
+
+-------------------------------------------------------------------------------->
+BRUTE FORCE APPROACH : 
+
+n => size of the given original array
+x => size of the temporary arary 
+
+T.C => O(n) + O(x) + O(n-x) => O(2n) => O(n)
+S.C => O(n) ==> for using the temp array 
+workflow steps : 
+
+1. Create a temporary list.
+2. Traverse the array.
+3. Store all non-zero elements in the temporary list.
+4. Copy all non-zero elements back to the original array.
+5. Fill the remaining positions with zeros.
+6. Return the modified array (or modify in-place).
+
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        temp = [] 
+        n = len(nums)
+        for i in range(0,n):
+            if nums[i] != 0 :
+                temp.append(nums[i])
+        temp_list_size = len(temp)        
+        for i in range(0,temp_list_size):
+            nums[i] = temp[i]
+
+        for i in range(temp_list_size,n):
+            nums[i] = 0
+            
+--------------------------------------------------->            
+===> by taking another array as support :  
+      
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        a=[]
+        b=[]
+        for i in range(len(nums)):
+            if nums[i]==0:
+                a.append(nums[i])
+            else:
+                b.append(nums[i])
+        return b+a            
+-------------------------------------------------------------------------------->
+OPTIMAL FORCE APPROACH :
+
+n => no of elements in the array 
+x => length of the array to found the 1st zero in the array 
+T.C => O(x) + O(n-x) => O(n)  
+S.C => O(n) 
+
+workflow steps : 
+
+1. Find the index of the first zero.
+2. If there is no zero, return the array.
+3. Traverse from the next index.
+4. Whenever a non-zero element is found:
+   - Swap it with the zero at index j.
+   - Increment j.
+5. Continue until the end of the array. 
+
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        j = -1 
+        n = len(nums)
+        # Find the index of the first zero.
+        for i in range(0,n):
+            if nums[i] == 0 :
+                j = i 
+                break
+        # If there is no zero, return the array.
+        if j == -1:
+            return
+                    
+        for i in range(j+1,n): 
+            # Whenever a non-zero element is found
+            if nums[i] != 0 :
+                # Swap it with the zero at index j
+                nums[j] , nums[i] = nums[i] , nums[j] 
+                j +=1 # we should incrase the j value 
+
+
+==> tracing example to understand it very easily  : 
+
+nums = [1, 0, 2, 0, 3]
+
+                    START
+                      │
+                      ▼
+                j = -1, n = 5
+                      │
+                      ▼
+              Find first zero
+                      │
+          ┌───────────┴───────────┐
+          │                       │
+       i = 0                    i = 1
+      nums[0] = 1             nums[1] = 0
+      1 == 0 ❌                0 == 0 ✅
+          │                       │
+          │                       ▼
+          │                    j = 1
+          │                       │
+          └───────────┬───────────┘
+                      ▼
+          Start second loop
+        for i in range(j+1, n)
+                      │
+                      ▼
+              i = 2, 3, 4
+                      │
+          ┌───────────┴───────────┐
+          │                       │
+        i = 2                    i = 3
+      nums[2] = 2             nums[3] = 0
+          │                       │
+      2 != 0 ✅                0 != 0 ❌
+          │                       │
+          ▼                       ▼
+       Swap                    Do nothing
+ nums[j] ↔ nums[i]              │
+          │                       │
+ [1, 0, 2, 0, 3]                 │
+      ↑     ↑                    │
+      j     i                    │
+          │                       │
+          ▼                       │
+ [1, 2, 0, 0, 3]                 │
+          │                       │
+       j += 1                     │
+          │                       │
+        j = 2                     │
+          │                       │
+          └───────────┬───────────┘
+                      ▼
+                    i = 4
+                 nums[4] = 3
+                      │
+                   3 != 0 ✅
+                      │
+                      ▼
+                    Swap
+             nums[j] ↔ nums[i]
+                      │
+          [1, 2, 0, 0, 3]
+               ↑        ↑
+               j        i
+                      │
+                      ▼
+          [1, 2, 3, 0, 0]
+                      │
+                      ▼
+                   j += 1
+                      │
+                    j = 3
+                      │
+                      ▼
+                 Loop ends
+                      │
+                      ▼
+             FINAL ANSWER
+           [1, 2, 3, 0, 0]
+
+-------------------------------------------------------------------------->
+Linear Search : 
+
+Example 1
+Input: nums = [2, 3, 4, 5, 3], target = 3
+Output: 1
+
+Explanation:
+The first occurence of 3 in nums is at index 1
+
+Example 2
+Input: nums = [2, -4, 4, 0, 10], target = 6
+Output: -1
+
+Explanation:
+The value 6 does not occur in the array, hence output is -1
+
+T.C => O(n) 
+S.C => O(1) for storing length of the array i.e variable n 
+class Solution:
+    def linearSearch(self, nums, target):
+        n = len(nums)
+        for i in range(0,n):
+            if nums[i] == target : 
+                return i 
+        return -1                
+-------------------------------------------------------------------------->
+Find the Union of Two Sorted Arrays : 
+
+Union of two sorted arrays : note : in this problem union does not include the duplicate elements 
+
+Example 1
+Input: nums1 = [1, 2, 3, 4, 5], nums2 = [1, 2, 7]
+Output: [1, 2, 3, 4, 5, 7]
+
+Explanation:
+The elements 1, 2 are common to both, 3, 4, 5 are from nums1 and 7 is from nums2
+
+Example 2  : 
+Input: nums1 = [3, 4, 6, 7, 9, 9], nums2 = [1, 5, 7, 8, 8]
+Output: [1, 3, 4, 5, 6, 7, 8, 9]
+Explanation:
+The element 7 is common to both, 3, 4, 6, 9 are from nums1 and 1, 5, 8 is from nums2
+
+
+brute force solution : 
+
+workflow solution : 
+1. Create an empty set.
+2. Traverse nums1 and insert every element into the set.
+3. Traverse nums2 and insert every element into the set.
+4. Convert the set into a list.
+5. Return the list.
+
+T.C => O(nlogn) ==> for all elements in insertion into the set data structure  
+S.c => O(n) ==> used to return the answer but not the solve the problem 
+         
+class Solution:
+    def unionArray(self, nums1, nums2):
+        s = set() 
+        n1 = len(nums1)
+        n2 = len(nums2)
+        for i in range(0,n1):
+            s.add(nums1[i])
+        for i in range(0,n2):
+            s.add(nums2[i])
+        # return list(s)   # we can use list inbuilt function or use the below brute force logic also
+        union = []
+        for item in s : 
+            union.append(item)
+        return union         
+
+
+optimal solution :             
+-------------------------------------------------------------------------->
+Find Missing Number in an Array : 
+
+Find missing number : 
+    
+Given an integer array of size n containing distinct values in the range from 0 to n (inclusive),
+ return the only number missing from the array within this range.
+
+
+Example 1
+Input: nums = [0, 2, 3, 1, 4]
+
+Output: 5
+Explanation:
+nums contains 0, 1, 2, 3, 4 thus leaving 5 as the only missing number in the range [0, 5]
+
+Example 2
+Input: nums = [0, 1, 2, 4, 5, 6]
+
+Output: 3
+
+Explanation:
+nums contains 0, 1, 2, 4, 5, 6 thus leaving 3 as the only missing number in the range [0, 6]
+
+class Solution:
+    def missingNumber(self, nums):
+        n = len(nums)
+        # s = set(nums)
+        for i in range(n+1):
+            if i not in nums :
+                return i 
+      
+optimal approach :             
+workflow steps : 
+                
+1. Calculate the expected sum from 0 to n.
+2. Calculate the actual sum of the array.
+3. Subtract the actual sum from the expected sum.
+4. Return the difference.     
+       
+class Solution:
+    def missingNumber(self, nums):
+        n = len(nums) 
+        expected_sum = (n)*(n+1)//2 
+        actual_sum = sum(nums)
+        return expected_sum - actual_sum            
+-------------------------------------------------------------------------->
+Maximum Consecutive Ones
+Max Consecutive Ones :
+
+
+Example 1:
+
+Input: nums = [1,1,0,1,1,1]
+Output: 3
+Explanation: The first two digits or the last three digits are consecutive 1s.
+The maximum number of consecutive 1s is 3.
+
+Example 2:
+Input: nums = [1,0,1,1,0,1]
+Output: 2
+
+T.C => O(n) 
+S.P => O(1) # just to return the count 
+
+
+workflow steps : 
+
+1. Initialize count = 0 and max_count = 0.
+2. Traverse the array from left to right.
+3. If the current element is 1:
+      • Increment count.
+4. Otherwise (current element is 0):
+      • Reset count to 0.
+5. Update max_count with the maximum of max_count and count.
+6. Continue until the end of the array.
+7. Return max_count.
+
+==> variables to remember :
+count 
+max_count 
+
+class Solution:
+    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+        n = len(nums)
+        count = 0 
+        max_count  = 0 
+        for i in range(0,n):
+            if nums[i] == 1:
+                count +=1
+                max_count = max(max_count , count) 
+            else :
+                count = 0 
+            # max_count = max(max_count , count)   we can use this line here also no problme by remove from above   
+        return max_count    
+
+            
+-------------------------------------------------------------------------->
+Find the Number That Appears Once
+136. Single Number : 
+
+Given a non-empty array of integers nums, every element appears twice except for one. 
+Find that single one.
+You must implement a solution with a linear runtime complexity and use only constant extra space.
+
+Example 1:
+Input: nums = [2,2,1]
+Output: 1
+
+Example 2:
+Input: nums = [4,1,2,1,2]
+Output: 4
+
+Example 3:
+Input: nums = [1]
+Output: 1
+
+
+
+Brute force :
+    
+
+workflow steps :
+    
+1) Pick one element.
+2) Count its occurrences in the entire array.
+3) If it appears only once, return it.
+4) Otherwise, check the next element.
+5) Repeat until the unique element is found.
+
+T.C => O(n^2)
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        n = len(nums)
+        for i in range(0,n):
+            count = 0 
+            num = nums[i]
+            for j in range(0,n):
+                if nums[j] == num : 
+                    count +=1 
+            if count == 1 :
+                return nums[i]   
+----------------------------------------------------------------------->
+optimal : 
+1. Create an empty hash map.
+2. Count the frequency of every element.
+3. Traverse the hash map.
+4. Return the element whose frequency is 1.
+
+T.C => O(n) 
+S.C => O(n) ==> hashMap dict is used 
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        hashMap = {}
+        for num in nums :
+            hashMap[num] = hashMap.get(num,0)+1 
+        for key , val in hashMap.items() : 
+            if val == 1 :
+                return key 
+            
+----------------------------------------------------------------------->
+optimal :  
+workflow steps : 
+
+1) Initialize xor to 0.
+2) Visit each element in the array.
+3) XOR the current element with xor.
+4) Repeated elements cancel each other (A ^ A = 0).
+5) The unique element remains in xor.
+6) Return xor.
+
+
+==> best example to understand the below code : 
+input : [1,1,2,2,3] 
+output : 3     
+    
+T.C => O(n) 
+S.C => O(1) 
+    
+xor operations :
+0 1 => 1 if diff. them it is 1 
+0 0 => 0 if same it is 0  
+
+      
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        xor = 0 
+        for num in nums:
+            xor^=num
+        return xor  
+      
+=> Dry with an example : 
+--------------------------------------------->          
+remember this :
+
+    00 => 0 
+  ^ 10 => 2 
+  ----
+    10
+And binary 10 is decimal 2.
+
+so 0^any element = element only 
+--------------------------------------------->              
+nums = [1, 1, 2, 2, 3]
+
+Start:
+xor = 0
+
+       ↓ 1
+0 ^ 1 = 1
+
+       ↓ 1
+1 ^ 1 = 0
+      ↑ ↑
+      └─┴── 1 and 1 cancel
+
+       ↓ 2
+0 ^ 2 = 2
+
+       ↓ 2
+2 ^ 2 = 0
+      ↑ ↑
+      └─┴── 2 and 2 cancel
+
+       ↓ 3
+0 ^ 3 = 3
+
+FINAL
   ↓
-8 5 12 12 15
+  3                  
+-------------------------------------------------------------------------->
+Longest Subarray with Sum K — Positive : 
+or 
+Longest Subarray with Sum K — Positive + Negative : 
 
-This conversion is encoding.
+560. Subarray Sum Equals K  : 
+Given an array of integers nums and an integer k, return the total number of subarrays whose sum equals to k.
+A subarray is a contiguous non-empty sequence of elements within an array.
 
-Now suppose I receive:
+Example 1:
+Input: nums = [1,1,1], k = 2
+Output: 2
 
-8 5 12 12 15
+Example 2:
+Input: nums = [1,2,3], k = 3
+Output: 2
 
-I convert it back:
-8 → H
-5 → E
-12 → L
-12 → L
-15 → O
-This is decoding.
+==> T.C ==> O(n) 
+note : below solution is only for counting no of sub arrays which have sum equal to given k : 
+                             
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        count = 0
+        current_sum = 0
+        prefix_sums = {0: 1}  # sum: frequency
 
-So:
-Original information
-        ↓
-     ENCODING
-        ↓
-Different representation
-        ↓
-     DECODING
-        ↓
-Original information
+        for num in nums:
+            current_sum += num
+            if current_sum - k in prefix_sums:
+                count += prefix_sums[current_sum - k]
+            prefix_sums[current_sum] = prefix_sums.get(current_sum, 0) + 1
 
+        return count            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+MEDIUM PROBLEMS : 
 
-So if interviewer asks:
-"Why AES-GCM instead of AES-CBC?"
-You can say:
-"AES-CBC provides confidentiality,"
-" but it does not inherently provide authentication. "
-"AES-GCM provides authenticated encryption, meaning it protects the confidentiality"
-" of the data and also detects tampering. That makes AES-GCM a convenient and robust"
-" choice for protecting API data." 
+-------------------------------------------------------------------------->
+1. 2 sum  or Two Sum 
 
-
-Think:
-
-AES = lock 🔐
- GCM = tamper detector 🛡️
-
- AES-GCM = locked box + tamper detection 
-AES-GCM stands for Advanced Encryption Standard - Galois/Counter Mode   
-
-🆚 AES-GCM vs AES-CBC — easy interview comparison
-
-Feature
-
-AES-CBC
-AES-GCM
-
-Encryption
-✅
-✅
-
-Detects tampering by itself
-❌
-✅
-
-Authentication tag
-❌
-✅
-
-Good modern API choice
-
-Requires extra authentication design
-
-✅ Common choice
-
-Performance
-Good
-Very good, especially with hardware support
-Implementation complexity
-More components needed for authenticated encryption
-
-Simpler authenticated-encryption API
-
-🔑 One very important thing: the nonce
-
-Since you've been working with AES-GCM, you should know this interview point.
-
-AES-GCM uses a nonce (also called an IV).
+Example 1:
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 
 
-Typically:
+Example 2:
+Input: nums = [3,2,4], target = 6
+Output: [1,2] ==> note: here same element addition is not allowed...
 
-AES-GCM
-   +
-Secret Key
-   +
-Nonce
-   +
-Plaintext
+Example 3:
+Input: nums = [3,3], target = 6
+Output: [0,1]
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        for i in range(len(nums)):
+            for j in range(i+1,len(nums)):
+                if nums[i] + nums[j] == target : 
+                    return [i,j]
+                    # return list(i,j) => not valid in python 
+    
+    
+optimal :
+
+Time Complexity: O(n)
+Space Complexity: O(n)
+
+workflow steps : 
+    
+1. Create an empty hash map.
+2. Traverse the array.
+3. Calculate complement = target - current element.
+4. Check whether the complement exists in the hash map.
+5. If it exists, return its index and the current index.
+6. Otherwise, store the current element and its index.
+7. Continue until the pair is found.      
+
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        n = len(nums)
+        hashMap = {} 
+        for i in range(0,n):
+            compliment = target - nums[i] 
+            if compliment in hashMap:
+                return [hashMap[compliment],i]
+            else :
+                hashMap[nums[i]] = i     
+        
+    
+                    
+--------------------------------------------------------------------------> 
+Sort an Array of 0s, 1s and 2s
+Sort Colors  : (dutch national flag problem) red => white => blow ==> rwb
+
+Given an array nums with n objects colored red, white, or blue, sort them in-place so that objects 
+of the same color are adjacent, with the colors in the order red, white, and blue.
+
+We will use the integers 0, 1, and 2 to represent the color red, white, and blue, respectively.
+
+You must solve this problem without using the library's sort function.
+
+Example 1:
+Input: nums = [2,0,2,1,1,0]
+Output: [0,0,1,1,2,2]
+
+
+Example 2:
+Input: nums = [2,0,1]
+Output: [0,1,2]
+
+------------------------------>
+brute force solution :
+1) if we sore the given array using the bubble / insertion / selection / merge sort we will get the correct asnwer 
+=> T.C => O(n^2) if we use the bubble sort 
+=> T.C => O(nlogn) => if we use the merge sort i mean => nums.sort() inbuilt function 
+------------------------------>
+2) this approach is correct but we should not return the new array instead we shuold change given array only 
+
+take 3 diff. arrays to collect 0s , 1s , 2s then return zero_arr + one_arr + two_arr  
+
+
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        zero_arr = []
+        one_arr = []
+        two_arr = []
+
+        for num in nums:
+            if num == 0:
+                zero_arr.append(num)
+            elif num == 1:
+                one_arr.append(num)
+            elif num == 2:
+                two_arr.append(num)
+
+        return zero_arr + one_arr + two_arr
+------------------------------>    
+optimal solutions : working solution 
+
+workflow steps : 
+        
+1. Initialize low = 0, temp = 0, and high = n-1.
+2. Traverse while temp <= high.
+3. If nums[temp] == 0:
+      • Swap nums[low] and nums[temp].
+      • Increment low and temp.
+4. If nums[temp] == 1:
+      • Increment temp.
+5. If nums[temp] == 2:
+      • Swap nums[temp] and nums[high].
+      • Decrement high.
+      • Do NOT increment temp.
+6. Continue until temp > high. ==> means temp <= high 
+7. The array is sorted in-place.    
+ 
+T.C => 
+S.C =>     
+    
+    
+why temp <= high than temp < high :   
+there is one element left to process if we use this condition => temp < high . 
+becaz temp is the variable to process each and every element in the array 
+ 
+becaz high=high-1 if temp points 2 at anywhere in the array 
+    
+T.C → O(n)
+S.C → O(1)
+
+    
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        low = temp = 0 
+        high = len(nums)-1 
+        while temp <= high: # there is one element left to process if we use this condition => temp < high . 
+            if nums[temp] == 0 :
+                nums[low] , nums[temp] = nums[temp] , nums[low]
+                low +=1 
+                temp +=1 
+            elif nums[temp] == 1:
+                temp+=1
+            elif nums[temp] == 2 :
+                nums[high] , nums[temp] = nums[temp] , nums[high]
+                high -=1
+------------------------->                 
+==> if we dont use the while temp <= high and if we use while temp < high :         
+[2,0,1]
+
+Use Testcase
+Output
+[1,0,2]
+
+Expected
+[0,1,2]        
+------------------------->        
+Best Dry run of the code : 
+
+Initial:
+[2, 0, 1, 2]
+ ↑        ↑
+temp     high
+low=0    high=3
+
+
+1. nums[temp] = 2
    ↓
-Ciphertext + Authentication Tag
+Swap with high
 
-For AES-GCM, the nonce must never be reused with the same key.
+[2, 0, 1, 2]
+ ↓           ↓
+[2, 0, 1, 2]   (same values)
 
-A common practice is to generate a fresh 12-byte nonce for each encryption.
+high = 2
+temp stays
 
 
+2. nums[temp] = 2
+   ↓
+Swap with high
 
+[1, 0, 2, 2]
+ ↑     ↑
+temp  high
 
-| Term           | Simple meaning                                           | Intuition                           | Example                     |
-| -------------- | -------------------------------------------------------- | ----------------------------------- | --------------------------- |
-| **Encoding**   | Change data into another format                          | 📦 **Pack it in a standard format** | `Hello → SGVsbG8=` (Base64) |
-| **Decoding**   | Convert encoded data back                                | 📦 **Unpack the standard format**   | `SGVsbG8= → Hello`          |
-| **Encryption** | Change data so others cannot understand it without a key | 🔐 **Lock it with a key**           | `Hello → x7$K@92#`          |
-| **Decryption** | Use the key to turn encrypted data back                  | 🔑 **Unlock it with the key**       | `x7$K@92# → Hello`          |
+high = 1
+temp stays
 
 
+3. nums[temp] = 1
+   ↓
+temp++
 
+[1, 0, 2, 2]
+    ↑
+   temp
 
-A coupon code is a special code that gives you a discount or special benefit when you buy something.
 
-Simple real-life example 🛒
+4. nums[temp] = 0
+   ↓
+Swap with low
 
-Suppose you go to an online shopping website.
+[0, 1, 2, 2]
 
-You want to buy a shirt:
+low++
+temp++
 
-Shirt price = ₹1,000
+        ↓
 
-At checkout, you see:
+temp = 2
+high = 1
 
-Coupon Code: SAVE100
-You enter:
-SAVE100
-The website says:
-Original price = ₹1,000
-Discount     = ₹100
---------------------
-You pay      = ₹900
+temp > high → STOP
 
-So, SAVE100 is the coupon code.
+Final:
+[0, 1, 2, 2]        
+        
+        
+Initialize:
+low = 0
+temp = 0
+high = n-1
 
+        ↓
 
-Why are coupon codes introduced?
+while temp <= high
 
-Companies introduce coupon codes mainly to encourage customers to buy.
-For example:
-Imagine an online store has a new customer.
+        ↓
 
-The company says:
-"If you make your first purchase, use WELCOME10 and get 10% off."
-Customer sees:
+   nums[temp] ?
 
-Product = ₹2,000
-WELCOME10
-    ↓
-10% discount
-    ↓
-₹200 discount
-Final price = ₹1,800
+ ┌──────┼──────┐
+ ↓      ↓      ↓
+  0      1      2
+ ↓       ↓      ↓
+swap   temp++  swap
+low++           high--
+temp++          temp stays                  
+-------------------------------------------------------------------------->
+Majority Element (> N/2)
+169. Majority Element  : 
 
-The customer saves ₹200, and the company gets a new customer.
+Given an array nums of size n, return the majority element.
+The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
 
 
+Example 1:
+Input: nums = [3,2,3]
+Output: 3
 
+Example 2:
+Input: nums = [2,2,1,1,1,2,2]
+Output: 2
 
+Trick steps :
+Idea: Cancel out non-majority elements. The majority element will survive in the end.
+count == 0: Choose a new candidate.
++1 or -1: If same as candidate, increase count; otherwise, decrease.
 
-========================================================================>
-daily tasks and task numbers(task_ids) : 
 
-farm apis 
-visit location apis 
-users apis 
-products apis 
+===>  very simple and memorable solution using the Boyer-Moore Voting Algorithm, which is optimal and easy to recall during interviews:
 
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        count = 0
+        candidate = None
 
-07-09-2026 :
-1881
+        for num in nums:
+            if count == 0:
+                candidate = num
+            count += (1 if num == candidate else -1)
+        
+        return candidate
+            
+-------------------------------------------------------------------------->
+Kadane's Algorithm — Maximum Subarray Sum or Print Subarray with Maximum Sum : 
+
+31))) : maximum subarray  : 
+using Kadane's Algorithm
+Given an integer array nums, find the subarray with the largest sum, and return its sum.
 
-08-09-2026 :
-1882 
 
-15-09-2026 tues  
-1910
+Example 1:
+Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
+Output: 6
+Explanation: The subarray [4,-1,2,1] has the largest sum 6.
 
-16-09-2026 tues  
-1912
+Example 2:
+Input: nums = [1]
+Output: 1
+Explanation: The subarray [1] has the largest sum 1.
 
-17-09-2026 tues  
-1913
+Example 3:
+Input: nums = [5,4,-1,7,8]
+Output: 23
+Explanation: The subarray [5,4,-1,7,8] has the largest sum 23.
 
-18-09-2026 tues  
-1929
+Workflow steps
+1) Initialize curr_sum and max_sum with the first element.
+2) Traverse the remaining elements from left to right.
+3) For each num, choose the maximum between:
+4) Starting a new subarray from num.
+5) Adding num to the existing curr_sum.
+6) Update curr_sum with that maximum value.
+7) Update max_sum if curr_sum is greater.
+8) Continue until the end of the array.
+9) Return max_sum.
 
-19-09-2026 tues  
+T.C => O(n) 
+S.C => O(n) 
 
+variables :
+curr_sum 
+max_sum 
 
-21-09-2026 mon
-1846 
-1907 
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        curr_sum = max_sum = nums[0]
 
-22-09-2026 tues  
-1930
-1926
+        for num in nums[1:]:
+            curr_sum = max(num , curr_sum+num)
+            max_sum =max(curr_sum , max_sum)
+        return max_sum 
+    
+==> Dry run of the code :
 
-
-23-09-2026 wed  
-1954
-1955
-
-24-09-2026 thur  
-2017
-2018
-
-25-09-2026 fri  
-2026 => traced the all leads apis 
-
-26-09-2026 sat  
-2039 ==> 1st 8 apis traced in that marketing module 
-
-27-09-2026 sun  
-1930
-1926
-
-28-09-2026 mon  
-1930
-1926
-
-29-09-2026 tues  
-1930
-1926
-
-30-09-2026 wed  
-1930
-1926
-
-22-09-2026 tues  
-1930
-1926
-
-22-09-2026 tues  
-1930
-1926
-
-22-09-2026 tues  
-1930
-1926
-
-22-09-2026 tues  
-1930
-1926
-
-22-09-2026 tues  
-1930
-1926
-
-22-09-2026 tues  
-1930
-1926
-
-22-09-2026 tues  
-1930
-1926
-
-22-09-2026 tues  
-1930
-1926
-
-22-09-2026 tues  
-1930
-1926
-
-22-09-2026 tues  
-1930
-1926
-
-22-09-2026 tues  
-1930
-1926
-
-22-09-2026 tues  
-1930
-1926
-
-22-09-2026 tues  
-1930
-1926
-
-
-========================================================================>
-
-@router.get(
-    "/due-details",
-    summary="List orders by payout due date",
-    description=(
-        "Return paid orders whose first payout due date falls within "
-        "the requested payout date range. The first payout date is "
-        "calculated as 61 days after SuperAdmin approval."
-    ),
-)
-async def list_payout_due_orders(
-    x_admin_mobile: Optional[str] = Header(None),
-
-    verified_mobile: Optional[str] = Depends(get_verified_mobile),
-
-    search: Optional[str] = Query(
-        None,
-        description="Search by Order ID, User Mobile, or User Name",
-    ),
-
-    farmId: Optional[str] = Query(
-        None,
-        description="Filter by Farm ID",
-    ),
-
-    from_date: Optional[str] = Query(
-        None,
-        description="Payout due date from (YYYY-MM-DD), inclusive",
-    ),
-
-    end_date: Optional[str] = Query(
-        None,
-        description="Payout due date to (YYYY-MM-DD), inclusive",
-    ),
-
-    onboardedByMobile: Optional[str] = Query(
-        None,
-        description="Filter by marketing executive mobile",
-    ),
-
-    page: int = Query(1, ge=1),
-
-    page_size: int = Query(10, ge=1, le=100000),
-) -> Dict[str, Any]:
-    x_admin_mobile = resolve_caller_mobile(x_admin_mobile, verified_mobile)
-
-    try:
-        # Normalize caller mobile (header may carry stray whitespace)
-        x_admin_mobile = (x_admin_mobile or "").strip()
-
-        driver = get_shared_driver()
-        try:
-            with driver.session() as session:
-
-                skip = (page - 1) * page_size
-                # Resolve caller role
-                role_rec = session.run(
-                    "MATCH (u:User {mobile: $mobile}) RETURN u.role AS role",
-                    mobile=x_admin_mobile,
-                ).single()
-
-                if not role_rec:
-                    return {"statuscode": 403, "status": "error", "message": "Unauthorized: User not found"}
-
-                role_parts = {r.strip() for r in (role_rec["role"] or "").split(",") if r.strip()}
-                if not role_parts.intersection(DASHBOARD_STAFF_ROLES):
-                    return {"statuscode": 403, "status": "error", "message": "Dashboard staff access required"}
-                # 🔹 Order-level filters
-                # Soft-deleted orders must never surface in the admin dashboard.
-                # order_conditions = ["u.paymentStatus IN $statuses", "coalesce(u.status,'') <> 'DELETED'"]
-                order_conditions = [
-                    "coalesce(u.status, '') <> 'DELETED'",
-                    "u.paymentStatus = 'PAID'",
-                    "u.adminApprovedAt IS NOT NULL",
-                    "u.superAdminApprovedAt IS NOT NULL",
-                ]
-                # Search matches (case-insensitive, partial) across: Order ID, buyer
-                # phone (userId), buyer name (name / first / last / full name), and the
-                # referrer's phone + name. `ref` is OPTIONAL-MATCHed before the WHERE in
-                # every query below so it is in scope here.
-                search_predicate = (
-                    "(toLower(u.id) CONTAINS toLower($search) "
-                    "OR u.userId CONTAINS $search "
-                    "OR toLower(coalesce(i.name, '')) CONTAINS toLower($search) "
-                    "OR toLower(coalesce(i.first_name, '')) CONTAINS toLower($search) "
-                    "OR toLower(coalesce(i.last_name, '')) CONTAINS toLower($search) "
-                    "OR toLower(trim(coalesce(i.first_name, '') + ' ' + coalesce(i.last_name, ''))) CONTAINS toLower($search) "
-                    "OR coalesce(toString(ref.mobile), '') CONTAINS $search "
-                    "OR toLower(coalesce(ref.name, '')) CONTAINS toLower($search) "
-                    "OR toLower(coalesce(ref.first_name, '')) CONTAINS toLower($search) "
-                    "OR toLower(coalesce(ref.last_name, '')) CONTAINS toLower($search) "
-                    "OR toLower(trim(coalesce(ref.first_name, '') + ' ' + coalesce(ref.last_name, ''))) CONTAINS toLower($search))"
-                )
-
-                if search:
-                    order_conditions.append(search_predicate)
-
-                # Convert the user's requested payout-date range
-                # into the corresponding SuperAdmin approval-date range.
-
-                # Business rule:
-                # first_due_date = superAdminApprovedAt + 61 days
-                # Therefore:
-                # superAdminApprovedAt = first_due_date - 61 days
-
-                payout_from_date = None
-                payout_end_date = None
-
-                if from_date:
-                    payout_from_date = (
-                        datetime.strptime(from_date, "%Y-%m-%d").date()
-                        - timedelta(days=61)
-                    ).isoformat()
-
-                if end_date:
-                    payout_end_date = (
-                        datetime.strptime(end_date, "%Y-%m-%d").date()
-                        - timedelta(days=61)
-                    ).isoformat()
-
-                if payout_from_date:
-                    order_conditions.append(
-                        "date(u.approvalDate) >= date($payout_from_date)"
-                    )
-
-                if payout_end_date:
-                    order_conditions.append(
-                        "date(u.approvalDate) <= date($payout_end_date)"
-                    )
-
-                if onboardedByMobile:
-                    order_conditions.append("u.unit_placed_by_mobile = $onboarded_by_mobile")
-
-                order_where = " AND ".join(order_conditions)
-
-                # 🔹 Farm Logic
-                # Orders are already scoped to the caller (orderCreatedByMobile / orderUpdatedByMobile),
-                # so the farm relationship is only used for the optional farmId filter and for enrichment.
-                if farmId:
-                    farm_clause = "MATCH (u)-[:ALLOCATED_TO]->(f:Farm)"
-                    farm_where_part = "WHERE f.id = $farmId"
+nums = [-2, 1, -3, 4, -1, 2]            
+-------------------------------------------------------------------------->
+
+
+121. Stock Buy and Sell or Best Time to Buy and Sell Stock 
+
+You are given an array prices where prices[i] is the price of a given stock on the ith day.
+
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+ 
+
+Example 1:
+
+Input: prices = [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+
+Example 2:
+Input: prices = [7,6,4,3,1]
+Output: 0
+Explanation: In this case, no transactions are done and the max profit = 0.
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        min_price = prices[0]
+        profit = 0 
+     
+        for i in range(1,len(prices)):
+            curr_profit = prices[i] - min_price
+            profit = max(profit , curr_profit)
+            min_price = min(min_price , prices[i])
+         
+        return profit
+
+-------------------------------------------------------------------------->
+==> Rearrange Array Elements by Sign
+
+You are given a 0-indexed integer array nums of even length consisting of an equal number of positive and negative integers.
+
+You should return the array of nums such that the array follows the given conditions:
+
+Every consecutive pair of integers have opposite signs.
+
+For all integers with the same sign, the order in which they were present in nums is preserved.
+
+The rearranged array begins with a positive integer.
+
+Return the modified array after rearranging the elements to satisfy the aforementioned conditions.
+
+
+Example 1:
+
+Input: nums = [3,1,-2,-5,2,-4]
+Output: [3,-2,1,-5,2,-4]
+
+Explanation:
+The positive integers in nums are [3,1,2]. The negative integers are [-2,-5,-4].
+The only possible way to rearrange them such that they satisfy all conditions is [3,-2,1,-5,2,-4].
+Other ways such as [1,-2,2,-5,3,-4], [3,1,2,-2,-5,-4], [-2,3,-5,1,-4,2] are incorrect because they
+do not satisfy one or more conditions.  
+
+
+Example 2:
+
+Input: nums = [-1,1]
+Output: [1,-1]
+
+Explanation:
+1 is the only positive integer and -1 the only negative integer in nums.
+So nums is rearranged to [1,-1].
+
+
+MY OWN BRUTE FORCE APPROACH : 
+T.C => O(n)
+S.C => O(n)
+
+class Solution:
+    def rearrangeArray(self, nums: List[int]) -> List[int]:
+        n_arr = []
+        p_arr = []
+        res = []
+        for num in nums :
+            if num >=0: 
+                p_arr.append(num)
+            else:
+                n_arr.append(num)    
+                
+        for i in range(len(n_arr)):
+            res.append(p_arr[i])
+            res.append(n_arr[i])
+        return res     
+
+==> without using the too many for loops and too many variables :
+
+Workflow — rearrangeArray() : 
+    
+1) Get the length n of the input array.
+2) Create ans of size n.
+3) Set pos_idx = 0 for positive elements.
+4) Set neg_idx = 1 for negative elements.
+5) Traverse each number in nums.
+6) If positive → place at ans[pos_idx], then pos_idx += 2.
+7) If negative → place at ans[neg_idx], then neg_idx += 2.
+8) Return ans.
+
+
+class Solution:
+    def rearrangeArray(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        ans = [0]*n 
+        pos_idx = 0
+        neg_idx = 1
+
+        for num in nums :
+            if num >=0:
+                ans[pos_idx] = num 
+                pos_idx +=2 
+            else :
+                ans[neg_idx] = num 
+                neg_idx +=2 
+                
+        return ans      
+
+
+==> special case  : when no of the + ve and -ve items are not same  : 
+    
+workflow steps  : 
+
+1) Create three empty lists: pos, neg, and ans.
+2) Traverse every element in nums.
+3) If the element is non-negative (>= 0), add it to pos.
+4) Otherwise, add it to neg.
+5) Initialize two pointers:
+    i = 0 → points to the current positive element.
+    j = 0 → points to the current negative element.
+6) Traverse while both positive and negative elements are available.
+   Append pos[i] to ans.
+   Append neg[j] to ans.
+7) Increment both pointers: i += 1, j += 1.
+8) If positive elements are still remaining, append them to ans.
+9) If negative elements are still remaining, append them to ans.
+10) Return ans.        
+
+def rearrange_by_sign(nums): 
+    pos = []
+    neg =  []
+    ans =  [] 
+    for num in nums:
+        if num >= 0 :
+            pos.append(num)
+        else:
+            neg.append(num)
+    i = 0 
+    j = 0 
+    while i< len(pos) and j < len(neg):
+        ans.append(pos[i])
+        ans.append(neg[j])
+        i+=1
+        j+=1 
+    while i < len(pos):
+        ans.append(pos[i])
+        i+=1 
+          
+    while j < len(neg):
+        ans.append(neg[j])
+        j+=1 
+    return ans 
+nums = [-1, -2, -3, 4, 5]
+print(rearrange_by_sign(nums))    
+# nums = [-1, -2, -3, 4, 5]
+
+
+output :
+[4, -1, 5, -2, -3]                    
+-------------------------------------------------------------------------->
+
+48))) : Next Permutation 
+For example, for arr = [1,2,3], 
+the following are all the permutations of arr: [1,2,3], [1,3,2], [2, 1, 3], [2, 3, 1], [3,1,2], [3,2,1].
+    
+Example 1:
+Input: nums = [1,2,3]
+Output: [1,3,2]
+
+Example 2:
+Input: nums = [3,2,1]
+Output: [1,2,3]
+
+Example 3:
+Input: nums = [1,1,5]
+Output: [1,5,1]    
+    
+🎯 Real-Life Analogy — "Next Bigger Ticket Number"
+Imagine you are managing ticket numbers at a queue counter. 
+The numbers are written on cards and arranged on a board. You want to find the next ticket number 
+that's just a bit bigger than the current one — using the same cards (digits). 
+If no such bigger number is possible (you’re at the biggest ticket), you just reset to the smallest (sort it ascending).
+
+
+====> best tracing example  : 
+===> A "dip" is the first place (from right to left) where the order stops decreasing — i.e., where a number is less than the number that comes after it.
+
+💡 Example: [1, 3, 5, 4, 2]
+Step-by-step Dry Run:
+i = 3 because nums[3] = 4 and nums[4] = 2, but 4 > 2, so keep moving left
+
+i = 2, nums[2] = 5, nums[3] = 4 → still 5 > 4, move left
+
+i = 1, nums[1] = 3, nums[2] = 5 → YES! 3 < 5 → found the dip!
+
+👉 Think: Ticket number is 13542. You want next bigger ticket using same digits.
+
+Now find a digit just larger than 3 from the right:
+
+Start from end, find 4 (> 3) → that's our swap candidate
+
+Swap 3 and 4: → 14532
+
+Now reverse the part after index 1 (532) → gives 12534
+
+✅ Final result: [1, 4, 2, 3, 5]
+
+🎓 Real-Life Analogy Summary:
+Imagine you're trying to increase your ticket number using the same digits:
+
+Find the digit where you can make a change (first dip from right).
+
+Find the smallest larger number to replace it (next bigger option).
+
+Rearrange the remaining digits to make the smallest possible number.
+
+🧠 Memory Tip (Mnemonic):
+"Find Dip → Swap Just Bigger → Reverse Right"
+
+You can even remember it like:
+📉 ➡️ 🔄 ➡️ 🔃
+("Down, Swap, Reverse" – DSR)
+
+
+from typing import List
+
+class Solution:
+    def nextPermutation(self, nums: List[int]) -> None:
+        n = len(nums)
+        i = n - 2  # Start from the second last element (right to left)
+        
+        # 🧭 Step 1: Find the first "dip" from right
+        # This means finding the first place where the current number is smaller than the next one
+        # In real life: You scan your ticket number from right side,
+        # looking for the first place where you can "make it bigger"
+        while i >= 0 and nums[i] >= nums[i + 1]: # [3,5,4,2] 
+            i -= 1
+        
+        # 🧠 Now i is the index where the "dip" happens (nums[i] < nums[i+1])
+        # If we found such an index, that means we can make a bigger number
+        if i >= 0:
+            j = n - 1
+
+            # 🎯 Step 2: Find the next **just larger number** than nums[i] from the right
+            # Think of this like: swap the "dip" number with the next larger digit
+            while nums[j] <= nums[i]:
+                j -= 1
+
+            # 🔄 Swap the numbers at i and j
+            nums[i], nums[j] = nums[j], nums[i]
+
+        # 🔁 Step 3: Reverse the part of the array after index i
+        # Why? Because we want the **smallest possible number** after the change,
+        # so we sort the remaining digits in ascending order
+        nums[i + 1:] = reversed(nums[i + 1:])
+-------------------------------------------------------------------------->
+
+Leaders in an Array : 
+
+Given an integer array nums, return a list of all the leaders in the array.
+
+A leader in an array is an element whose value is strictly greater than all elements to its right in the given array.
+The rightmost element is always a leader. The elements in the leader array must appear in the order they appear in the nums array.
+
+Example 1 : 
+Input: nums = [1, 2, 5, 3, 1, 2]
+Output: [5, 3, 2]
+Explanation:
+2 is the rightmost element, 3 is the largest element in the index range [3, 5], 5 is the largest element in the index range [2, 5]
+
+Example 2 : 
+Input: nums = [-3, 4, 5, 1, -4, -5]
+Output: [5, 1, -4, -5]
+Explanation:
+-5 is the rightmost element, -4 is the largest element in the index range [4, 5], 1 is the largest 
+
+brute force approach : 
+T.C => O(n^2) : 
+
+class Solution:
+    def leaders(self, nums):
+        result = []
+        n = len(nums)
+        for i in range(0,n):
+            leader = True
+            for j in range(i+1,n):
+                if nums[i] < nums[j]:
+                    leader = False
+                    break 
+            if leader == True :
+                result.append(nums[i])
+        return result        
+
+T.C => O(n) : 
+
+class Solution:
+    def leaders(self, nums):
+        maxi = float('-inf')
+        result = []
+        for i in range(n-1,-1,-1):
+            if nums[i] > maxi : 
+                result.append(nums[i])
+                maxi = max(maxi ,nums[i])
+        return result[::-1] 
+        # return result.reverse()       
+
+-------------------------------------------------------------------------->
+
+        
+Longest Consecutive Sequence
+                           
+-------------------------------------------------------------------------->
+73. Set Matrix Zeroes : 
+
+Given an m x n integer matrix matrix, if an element is 0, set its entire row and column to 0's.
+You must do it in place.
+
+ 
+Example 1:
+Input: matrix = [[1,1,1],[1,0,1],[1,1,1]]
+Output: [[1,0,1],[0,0,0],[1,0,1]]
+
+Example 2:
+Input: matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+Output: [[0,0,0,0],[0,4,5,0],[0,3,1,0]]    
+
+
+brute force : 
+
+T.C => O(m × n × (m + n)) => O(n^3) 
+S.C => O(1)
+
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        def mark_rows(i,matrix):
+            for j in range(0,cols):
+                if matrix[i][j] != 0 : 
+                    matrix[i][j] = 'a' # or we can also use -1 or any char if i use minus some of the test cases have the value -1 causng the wrong o/p
+
+        def mark_cols(j,matrix):
+            for i in range(0,rows):
+                if matrix[i][j] != 0 : 
+                    matrix[i][j] = 'a'
+
+        rows = len(matrix)
+        cols = len(matrix[0])
+        for i in range(rows):
+            for j in range(cols):
+                if matrix[i][j] == 0 :
+                    mark_rows(i,matrix)
+                    mark_cols(j,matrix) 
+
+        for i in range(rows):
+            for j in range(cols):
+                if matrix[i][j] == 'a' :
+                    matrix[i][j] = 0 
+
+
+
+
+optimal solution : 
+
+T.C =>O(n^2) 
+S.C => O(n+m) 
+n=> rows list 
+m=> cols list 
+
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        rows_len = len(matrix)
+        cols_len = len(matrix[0]) 
+
+        rows =[0]*rows_len 
+        cols = [0]*cols_len
+
+
+        for i in range(rows_len):
+            for j in range(cols_len):
+                if matrix[i][j] == 0 :
+                    rows[i] = 1 
+                    cols[j] = 1
+        
+        for i in range(rows_len):
+            for j in range(cols_len):
+                if rows[i] or cols[j] :
+                    matrix[i][j] = 0              
+-------------------------------------------------------------------------->
+Rotate Matrix by 90 Degrees 
+===> rotation of image or matrix  : transpose + reversing each row in the tramnsposed matrix 
+
+Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+Output: [[7,4,1],[8,5,2],[9,6,3]]
+
+Input: matrix = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]
+Output: [[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]
+
+Rotation (90° Clockwise)
+Original
+
+1 2 3
+4 5 6
+7 8 9
+
+Rotate
+
+7 4 1
+8 5 2
+9 6 3
+
+Here, the matrix is turned, not just swapped.
+
+
+T.C => O(n^2) 
+
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        rows = len(matrix)
+        cols = len(matrix[0])
+        # ans = [[0]* rows for _ in range(cols)]
+
+        for i in range(0,rows):
+            for j in range(i+1,cols):
+                matrix[i][j] , matrix[j][i] = matrix[j][i] , matrix[i][j]
+                # (0,0) , (1,1) , (2,2) values will not changed  
+                # 0,1 => 1,0 
+                # 0,2 => 2,0 
+                # 1,2 => 2,1 
+                # 2,1 => 1,2 
+        for row in matrix:
+            row.reverse()
+        return matrix    
+===================================================================================================================================================================>
+TUF Solution (90° Anti-Clockwise)
+from typing import List
+
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+
+        n = len(matrix)
+
+        # Step 1: Transpose
+        for i in range(n):
+            for j in range(i + 1, n):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+
+        # Step 2: Reverse every column
+        for col in range(n):
+            top = 0
+            bottom = n - 1
+
+            while top < bottom:
+                matrix[top][col], matrix[bottom][col] = matrix[bottom][col], matrix[top][col]
+                top += 1
+                bottom -= 1
+
+        return matrix            
+-------------------------------------------------------------------------->
+Print Matrix in Spiral Manner : 
+
+rblt => spiral order and looping start and end variables 
+r => l to r 
+b => t to b
+l => r to l 
+t => b to t 
+
+direction 0,1,2,3 
+direction = (direction+1) % 4 
+
+
+
+increment or decrement : 
+trbl => 
+
+n => for travesing all the spirals layers 
+m => for traversing all the elements in the each spiral layer  
+T.C => O(n*m) 
+S.C => O(n)
+
+variables to remember  : 
+left , right , top , bottom , rows , cols , res , direction (note : this problem related to matrix follow the zero based indexing every where)
+workflow steps   :
+    
+1. Initialize top, bottom, left and right boundaries.
+2. Traverse the top row.
+3. Traverse the right column.
+4. Traverse the bottom row.
+5. Traverse the left column.
+6. After each traversal, move the corresponding boundary inward.
+7. Repeat until left > right or top > bottom.
+8. Return the result.
+
+
+
+    
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        rows = len(matrix)
+        cols = len(matrix[0])
+        top = left = 0 
+        
+        bottom = rows-1 
+        right = cols -1 
+        direction = 0 
+        
+        res = [] 
+        
+        while(left<= right and top<= bottom): # when the top and bottom variables(if it is 3*3 matrix) or left and right variables are crossed then one spiral is completed  
+            if direction == 0 : 
+                for i in range(left , right+1):
+                    res.append(matrix[top][i])
+                top+=1 
+                
+            elif direction == 1 :
+                for i in range(top, bottom+1):
+                    res.append(matrix[i][right])
+                right-=1 
+                
+            elif direction ==2 :
+                for i in range(right,left-1,-1):
+                    res.append(matrix[bottom][i])  
+                bottom -=1 
+                
+            elif direction ==3 :
+                for i in range(bottom,top-1,-1):
+                    res.append(matrix[i][left])  
+                left +=1 
+                
+            direction = (direction+1)% 4 
+        return res         
+            
+-------------------------------------------------------------------------->
+ 
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+            
+-------------------------------------------------------------------------->
+
+131. Count Inversions
+
+Given an integer array nums. Return the number of inversions in the array.
+Two elements a[i] and a[j] form an inversion if a[i] > a[j] and i < j.
+It indicates how close an array is to being sorted.
+A sorted array has an inversion count of 0.
+An array sorted in descending order has maximum inversion.
+
+
+Example 1:
+Input: nums = [2, 3, 7, 1, 3, 5]
+Output: 5
+Explanation:
+The responsible indexes are:
+nums[0], nums[3], values: 2 > 1 & indexes: 0 < 3
+nums[1], nums[3], values: 3 > 1 & indexes: 1 < 3
+nums[2], nums[3], values: 7 > 1 & indexes: 2 < 3
+nums[2], nums[4], values: 7 > 3 & indexes: 2 < 4
+nums[2], nums[5], values: 7 > 5 & indexes: 2 < 5
+
+
+Example 2:
+Input: nums = [-10, -5, 6, 11, 15, 17]
+Output: 0
+Explanation:
+nums is sorted, hence no inversions present.
+
+
+=> brute force solution : 
+T.C ==> O(n^2)  :  two nested loops to check all pairs
+
+
+Reverse Pairs — High-Level Workflow : 
+
+1) Initialize count = 0 to store the number of reverse pairs.
+2) Take each element nums[i] as the first element of the pair.
+3) Compare it with every element after it using j = i + 1.
+4) Check the reverse-pair condition:
+   nums[i] > nums[j]
+5) If the condition is true, increment count by 1.
+6) Continue checking all possible pairs (i, j) where i < j.
+7) Return count as the total number of reverse pairs.
+
+
+class Solution:
+    def numberOfInversions(self, nums):
+        n = len(nums)
+        count = 0 
+        for i in range(0,n-1):
+            for j in range(i+1,n):
+                if nums[i] > nums[j]:
+                    count +=1 
+        return count             
+
+        
+
+=> optimal solution : 
+
+High-Level Workflow — Revision  : 
+
+Count Inversions Using Merge Sort
+
+1) Divide the array into two halves recursively.
+2) Find inversions in the left half using merge sort.
+3) Find inversions in the right half using merge sort.
+4) Merge the two sorted halves.
+5) While merging, compare left and right elements.
+6) If left <= right, add the left element normally.
+7) If left > right, an inversion is found. Add mid - left + 1 (note we are given the sorted array as the input)
+because all remaining elements in the left half are greater than the current right element.
+
+8) Add remaining elements from both halves.
+9) Copy the sorted elements back into the original array.
+10) Return the total inversion count from left + right + merge.
+
+
+Complexity : 
+Time Complexity: O(n log n)
+Space Complexity: O(n)
+
+class Solution:
+    def numberOfInversions(self, nums):
+        
+        def merge(arr, low, mid, high):
+            temp = []
+            left = low
+            right = mid + 1
+            count = 0
+
+            while left <= mid and right <= high:
+                
+                if arr[left] <= arr[right]:
+                    temp.append(arr[left])
+                    left += 1
+                
                 else:
-                    farm_clause = "OPTIONAL MATCH (u)-[:ALLOCATED_TO]->(f:Farm)"
-                    farm_where_part = ""
-
-                # 🔹 Main query — group all transactions under each order
-                query = f"""
-                MATCH (u:AnimalKartOrder)
-                OPTIONAL MATCH (i:User {{mobile: u.userId}})
-                OPTIONAL MATCH (i)-[:REFERREDBY]->(ref:User)
-                WITH u, i, ref
-                WHERE {order_where}
-                {farm_clause}
-                {farm_where_part}
-                OPTIONAL MATCH (u)-[:HAS_TRANSACTION]->(t:Transaction)
-                OPTIONAL MATCH (u)-[:HAS_INVOICE]->(inv:Invoice)
-                WITH u, i, f, inv, ref, collect(t) AS transactions
-                ORDER BY coalesce(u.superAdminApprovedAt, u.superAdminRejectedAt, u.adminApprovedAt, u.adminRejectedAt, u.submittedAt, u.placedAt) DESC
-                SKIP $skip
-                LIMIT $limit
-                RETURN u, transactions, i, f, inv, ref
-                """
-
-                result = session.run(
-                    query,
-                    search=search,
-                    farmId=farmId,
-                    payout_from_date=payout_from_date,
-                    payout_end_date=payout_end_date,
-                    onboarded_by_mobile=onboardedByMobile,
-                    skip=skip,
-                    limit=page_size,
-                    admin_mobile=x_admin_mobile,
-                )
-
-                orders = []
-                for record in result:
-                    u = dict(record["u"])
-                    i = record.get("i")
-                    f = record.get("f")
-                    inv = record.get("inv")
-                    ref = record.get("ref")
-
-                    # Get location from Farm
-                    if f:
-                        farm_data = dict(f)
-                        u["location"] = farm_data.get("location")
-                    else:
-                        u["location"] = None
-                    # 🔹 Referrer (who referred the investor) — via REFERREDBY relationship
-                    referred_by = None
-                    if ref:
-                        ref_node = dict(ref)
-                        ref_name = (
-                            ref_node.get("name")
-                            or f"{ref_node.get('first_name', '') or ''} {ref_node.get('last_name', '') or ''}".strip()
-                            or None
-                        )
-                        ref_mobile = ref_node.get("mobile") or ref_node.get("id")
-                        referred_by = {
-                            "name": ref_name,
-                            "mobile": ref_mobile,
-                            "referral_code": ref_node.get("referral_code"),
-                        }
-
-                    orders.append(
-                        convert_neo4j_datetime({
-                            "order": u,
-                            "investor": dict(i) if i else None,
-                            "referredBy": referred_by,
-                        })
-                    )
-
-                # Marketing exec who placed each order on the investor's behalf
-                # (UNIT_PLACED_BY / o.unit_placed_by_mobile) — only the mobile is
-                # stored on the order itself, so resolve names in one batch query.
-                onboarded_by_mobiles = {
-                    entry["order"].get("unit_placed_by_mobile")
-                    for entry in orders if entry["order"].get("unit_placed_by_mobile")
-                }
-                onboarded_by_map: Dict[str, Dict[str, Any]] = {}
-                if onboarded_by_mobiles:
-                    for row in session.run(
-                        "MATCH (e:User) WHERE e.mobile IN $mobiles "
-                        "RETURN e.mobile AS mobile, "
-                        "       trim(coalesce(e.first_name,'') + ' ' + coalesce(e.last_name,'')) AS name, "
-                        "       e.role AS role",
-                        mobiles=list(onboarded_by_mobiles),
-                    ).data():
-                        onboarded_by_map[row["mobile"]] = {"name": row["name"] or None, "role": row["role"]}
-                # Which of each order's units have since been transferred, and
-                # to whom — one query for the whole page, like the batch above.
-                # Without it this list names the investor as owner of units he
-                # no longer holds.
-                status_map = db_unit_transfer_status(
-                    session,
-                    [entry["order"].get("id") for entry in orders
-                     if entry["order"].get("id")],
-                )
-
-                for entry in orders:
-                    status = status_map.get(entry["order"].get("id")) or empty_status()
-
-                    entry["order"]["numUnits"] = status["total_units"]
-
-                    # Business rules:
-                    # - First due payout/date are applicable only when:
-                    #   1. paymentStatus is PAID
-                    #   2. Admin has approved the order
-                    #   3. SuperAdmin has approved the order
-                    # - Once both approvals are present, use superAdminApprovedAt
-                    #   as the approved date.
-                    # - First due date = exactly 61 days after SuperAdmin approval.
-                    # - If any condition is not satisfied, both fields remain None.
-                    total_units = int(status.get("total_units") or 0)
-
-                    payment_status = entry["order"].get("paymentStatus")
-                    admin_approved_at = entry["order"].get("adminApprovedAt")
-                    super_admin_approved_at = entry["order"].get("superAdminApprovedAt")
-
-                    # Only add first_due_payout and first_due_date
-                    # when all required conditions are satisfied.
-                    if (
-                        payment_status == "PAID"
-                        and admin_approved_at
-                        and super_admin_approved_at
-                    ):
-                        try:
-                            # Use SuperAdmin approval date
-                            approved_at = super_admin_approved_at
-                            # First payout = total units × ₹9,000
-                            entry["order"]["first_due_payout"] = total_units * 9000
-
-                            if isinstance(approved_at, str):
-                                # Neo4j may return nanosecond precision.
-                                # Python datetime supports only 6 microsecond digits.
-                                approved_at = re.sub(
-                                    r"(\.\d{6})\d+",
-                                    r"\1",
-                                    approved_at
-                                )
-                                approved_date = datetime.fromisoformat(
-                                    approved_at.replace("Z", "+00:00")
-                                )
-                            else:
-                                approved_date = approved_at
-                            # First due date = exactly 61 days after
-                            # SuperAdmin approval date
-                            entry["order"]["first_due_date"] = (
-                                approved_date + timedelta(days=61)
-                            ).isoformat()
-
-                        except Exception as e:
-                            logger.exception(
-                                f"[DUE DATE ERROR] Failed to calculate first_due_date: {e}"
-                            )
-                            # Remove the fields if calculation fails
-                            entry["order"].pop("first_due_payout", None)
-                            entry["order"].pop("first_due_date", None)
-                # 🔹 Filtered count + payout summary
-                # The summary is calculated for ALL filtered orders,
-                # not only the orders present on the current page.
-                # paid_units:
-                #     Total units across all filtered PAID orders.
-                # total_due_pay_amount:
-                #     Total units × ₹9,000.
-                
-                # paid_due_amount:
-                #     Sum of amount_credited from FirstDuePayOut nodes
-                #     where is_amount_credited = true.
-                
-                # pending_due_amount:
-                #     Total due amount - already credited amount.
-
-                summary_query = f"""
-                MATCH (u:AnimalKartOrder)
-                OPTIONAL MATCH (i:User {{mobile: u.userId}})
-                OPTIONAL MATCH (i)-[:REFERREDBY]->(ref:User)
-                WITH u, i, ref
-                WHERE {order_where}
-                {farm_clause}
-                {farm_where_part}
-
-                OPTIONAL MATCH (u)-[:FirstDuePayOut]->(p:FirstDuePayOut)
-
-                RETURN
-                    count(DISTINCT u) AS total_filtered,
-
-                    collect(DISTINCT u.id) AS order_ids,
-
-                    coalesce(
-                        sum(
-                            CASE
-                                WHEN p.is_amount_credited = true
-                                THEN coalesce(p.amount_credited, 0)
-                                ELSE 0
-                            END
-                        ),
-                        0
-                    ) AS paid_due_amount
-                """
-                summary_record = session.run(
-                    summary_query,
-                    search=search,
-                    farmId=farmId,
-                    payout_from_date=payout_from_date,
-                    payout_end_date=payout_end_date,
-                    onboarded_by_mobile=onboardedByMobile,
-                    admin_mobile=x_admin_mobile,
-                ).single()
-
-                total_filtered = summary_record["total_filtered"]
-                summary_order_ids = summary_record["order_ids"] or []
-                paid_due_amount = int(summary_record["paid_due_amount"] or 0)
-
-                # Get the effective unit count for ALL filtered orders.
-                # This is the same unit-transfer logic already used by the API.
-                summary_status_map = db_unit_transfer_status(
-                    session,
-                    summary_order_ids,
-                )
-                paid_units = 0
-                total_due_pay_amount = 0
-
-                for order_id in summary_order_ids:
-                    status = summary_status_map.get(order_id) or empty_status()
-
-                    total_units = int(status.get("total_units") or 0)
-
-                    paid_units += total_units
-                    total_due_pay_amount += total_units * 9000
-
-                # Amount that is still pending to be paid.
-                pending_due_amount = max(
-                    total_due_pay_amount - paid_due_amount,
-                    0,
-                )
-
-                # 🔹 Final response
-                response_orders = []
-
-                for entry in orders:
-                    order = entry["order"]
-                    investor = entry["investor"]
-
-                    response_order = {
-                        "id": order.get("id"),
-                        "approvalDate": order.get("approvalDate"),
-                        "numunits": order.get("numUnits"),
-                        "paymentstatus": order.get("paymentStatus"),
-                        "user_id": order.get("user_id"),
-                        "location": order.get("location"),
-                    }
-
-                    if "first_due_payout" in order:
-                        response_order["first_due_payout"] = order["first_due_payout"]
-
-                    if "first_due_date" in order:
-                        response_order["first_due_date"] = order["first_due_date"]
-
-                    response_orders.append({
-                        "order": response_order,
-                        "investor": {
-                            "name": f"{investor.get('first_name', '')} {investor.get('last_name', '')}".strip() if investor else None,
-                            "mobile": investor.get("mobile") if investor else None,
-                        },
-                        "referredBy": entry.get("referredBy"),
-                    })
-
-                return {
-                    "statuscode": 200,
-                    "status": "success",
-                    "page": page,
-                    "page_size": page_size,
-                    "total_filtered": total_filtered,
-                    "paid_units": paid_units,
-                    "total_due_pay_amount": total_due_pay_amount,
-                    "paid_due_amount": paid_due_amount,
-                    "pending_due_amount": pending_due_amount,
-                    "orders": response_orders,
-                }
-        finally:
-            pass 
-    except Exception as e:
-        return {
-            "statuscode": 500,
-            "status": "error",
-            "message": str(e),
-        }
-
-========================================================================>
-The endpoint handling the request is list_marketing_orders in routers/marketing.py.
-
-The onboardedByMobile query parameter is captured by MarketingOrderFilters.
-
-It is passed down to db_marketing_orders (and the related count / stats helpers)
- where the Cypher query adds a condition o.unit_placed_by_mobile = $onboarded_by_mobile.
-
-The filter works on the unit_placed_by_mobile property of the AnimalKartOrder node,
- not on a relationship node directly, and is constrained by the caller’s overall visibility scope.
-
-
-
-========================================================================>
-
-def db_marketing_orders(session, exec_mobiles: List[str],
-                        paid_only: bool = False,
-                        unapproved_only: bool = False,
-                        with_cache: bool = False,
-                        payment_status: Optional[str] = None,
-                        search: Optional[str] = None,
-                        from_date: Optional[str] = None,
-                        end_date: Optional[str] = None,
-                        with_cpf: Optional[bool] = None,
-                        onboarded_by_mobile: Optional[str] = None,
-                        skip: Optional[int] = None,
-                        limit: Optional[int] = None):
-    """Unit orders placed by any of the given executives.
-
-    `skip`/`limit` page the result. Both omitted returns every matching order,
-    which is what the aggregating callers (the leaderboard, the pending queue)
-    still want.
-
-    `with_cache=True` returns (rows, cache) instead of rows, so a caller that
-    aggregates over the incentives can reuse the plan and units-so-far already
-    fetched for the per-order projections rather than querying them again.
-    """
-    where, search_clause, params = _marketing_orders_filter(
-        exec_mobiles, paid_only=paid_only, unapproved_only=unapproved_only,
-        payment_status=payment_status, search=search, from_date=from_date,
-        end_date=end_date, with_cpf=with_cpf,
-        onboarded_by_mobile=onboarded_by_mobile)
-
-    # Paged in Cypher, not in Python: slicing after the fact would still build
-    # every row's transaction and unit collections, and then run the per-order
-    # incentive projection over all of them.
-    page_clause = ""
-    if limit is not None:
-        params["skip"] = int(skip or 0)
-        params["limit"] = int(limit)
-        page_clause = " SKIP $skip LIMIT $limit"
-
-    rows = [dict(r) for r in session.run(
-        _ORDERS_MATCH.format(where=where) +
-        f"{search_clause}"
-        # Marketing creates the order; an EMPLOYEE attaches the payments. The
-        # Manager needs to see how the money arrived before approving, so the
-        # transactions come back with the order rather than needing a second call.
-        # `lead` is carried the whole way down for the lead_name/lead_mobile_number
-        # columns — it used to be dropped here, which is why the listing could
-        # search by lead but never show one.
-        # Who referred the INVESTOR — the peer REFERREDBY edge, not the marketing
-        # onboarding edge. It is what makes an order DIRECT or INDIRECT, so a
-        # manager approving the incentive should be able to see it next to the
-        # amount. head(collect(...)) rather than a plain OPTIONAL MATCH because a
-        # second REFERREDBY edge would otherwise duplicate the order row.
-        "WITH o, r, e, i, lead "
-        "OPTIONAL MATCH (i)-[:REFERREDBY]->(refu:User) "
-        "WITH o, r, e, i, lead, head(collect(refu)) AS ref "
-        "OPTIONAL MATCH (o)-[:HAS_TRANSACTION]->(t:Transaction) "
-        "WITH o, r, e, i, lead, ref, t ORDER BY t.createdAt DESC "
-        "WITH o, r, e, i, lead, ref, "
-        "     collect(CASE WHEN t IS NULL THEN null ELSE { "
-        "         id: t.id, "
-        "         amount: coalesce(t.amount, 0), "
-        "         paymentMethod: coalesce(t.paymentMethod, ''), "
-        "         status: coalesce(t.status, ''), "
-        "         utrNumber: coalesce(t.utrNumber, ''), "
-        "         transferMode: coalesce(t.transferMode, ''), "
-        # toString() because createdAt is a neo4j DateTime, which FastAPI's JSON
-        # encoder cannot serialise.
-        "         transactionDate: toString(coalesce(t.transactionDate, '')), "
-        "         createdAt: toString(coalesce(t.createdAt, '')), "
-        "         recorded_by_mobile: coalesce(t.paymentUpdatedByMobile, ''), "
-        "         recorded_by_name: coalesce(t.paymentUpdatedByName, ''), "
-        "         recorded_by_role: coalesce(t.paymentUpdatedByRole, '') "
-        "     } END) AS all_txns, "
-        # SURPLUS is an over-payment credited to the money wallet, excluded from
-        # coverage everywhere else in purchases.py — keep totalPaid consistent.
-        "     sum(CASE WHEN t IS NULL OR coalesce(t.paymentMethod,'') = 'SURPLUS' "
-        "              THEN 0 ELSE coalesce(t.amount, 0) END) AS totalPaid "
-        " OPTIONAL MATCH (o)-[:HAS_UNIT]->(u:Unit) "
-        " OPTIONAL MATCH (u)-[:HAS_NOMINEE]->(n:Nominee) "
-        " WITH o, r, e, i, lead, ref, all_txns, totalPaid, u, n ORDER BY u.unitIndex "
-        " WITH o, r, e, i, lead, ref, all_txns, totalPaid, "
-        "     collect(CASE WHEN u IS NULL THEN null ELSE { "
-        "         unit_id: u.id, "
-        "         unit_index: u.unitIndex, "
-        "         breed_id: u.breedId, "
-        "         nominee: CASE WHEN n IS NULL THEN null ELSE n { .*, createdAt: toString(n.createdAt) } END "
-        "     } END) AS all_units "
-        "RETURN o.id AS order_id, o.userId AS investor_mobile, "
-        "       trim(coalesce(i.first_name,'') + ' ' + coalesce(i.last_name,'')) AS investor_name, "
-        "       o.numUnits AS numUnits, "
-        "       coalesce(o.paymentStatus, '') AS paymentStatus, "
-        "       coalesce(o.status, '') AS status, "
-        "       coalesce(o.totalCost, 0) AS totalCost, "
-        "       totalPaid, "
-        "       coalesce(o.withCpf, false) AS with_cpf, "
-        "       [x IN all_txns WHERE x IS NOT NULL] AS transactions, "
-        "       [x IN all_units WHERE x IS NOT NULL] AS units, "
-        "       coalesce(o.lead_id, '') AS lead_id, "
-        "       coalesce(lead.full_name, '') AS lead_name, "
-        # The lead's own number, which is often not the investor's: a lead is
-        # captured before anyone signs up, so this is the number marketing
-        # actually called.
-        "       coalesce(toString(lead.mobile_number), toString(lead.phone_number), '') AS lead_mobile_number, "
-        # Where the lead came from. `platform` is the ad platform or the chosen
-        # source; `campaign_name` names the specific ad it answered, which is
-        # what "which campaign is this sale from" actually asks. reference_*
-        # only exist on a Reference lead — the person who passed the name on.
-        "       coalesce(lead.platform, '') AS lead_platform, "
-        "       coalesce(lead.campaign_name, '') AS lead_campaign_name, "
-        "       coalesce(lead.lead_status, '') AS lead_status, "
-        "       coalesce(lead.reference_name, '') AS lead_reference_name, "
-        "       coalesce(toString(lead.reference_number), '') AS lead_reference_number, "
-        # The investor's referrer, resolved above.
-        "       coalesce(ref.mobile, '') AS referred_by_mobile, "
-        "       trim(coalesce(ref.first_name,'') + ' ' + coalesce(ref.last_name,'')) AS referred_by_name, "
-        "       coalesce(ref.user_id, '') AS referred_by_user_id, "
-        "       coalesce(ref.role, '') AS referred_by_role, "
-        "       coalesce(o.incentive_approved, false) AS incentive_approved, "
-        "       coalesce(o.incentive_approved_by, '') AS incentive_approved_by, "
-        "       toString(coalesce(o.incentive_approved_at, '')) AS incentive_approved_at, "
-        "       e.mobile AS unit_placed_by_mobile, "
-        "       toString(coalesce(r.placed_at, '')) AS placed_at "
-        "ORDER BY r.placed_at DESC" + page_clause,
-        **params)]
-
-    approvers = db_approver_names(session, (r.get("incentive_approved_by") for r in rows))
-
-    cache: dict = {}
-    for row in rows:
-        # Who signed the incentive off, by name. Falls back to the bare mobile
-        # rather than a blank: an approval with an unresolvable approver still
-        # happened, and hiding that would read as "never approved".
-        approver = approvers.get(normalize_mobile(row.get("incentive_approved_by") or ""), {})
-        row["incentive_approved_by_name"] = approver.get("name", "")
-        row["incentive_approved_by_role"] = approver.get("role", "")
-        credit = db_order_credit_target(session, row["investor_mobile"], row["order_id"])
-        row["lead_type"] = credit["source_type"] if credit else ""
-        # Display label for the raw stored platform ('ig' -> 'Instagram'); the
-        # raw value stays on the row so a consumer can still filter on it.
-        row["lead_source"] = lead_source_label(row.get("lead_platform"))
-        row["cpf_status"] = cpf_status_label(row.get("with_cpf"))
-        # What this order pays, and why — CREDITED once approved, PROJECTED
-        # once paid, PENDING before that. Reuses the credit target already
-        # resolved above rather than looking the exec up a second time.
-        row["incentive"] = order_incentive(session, row, credit, cache)
-    return (rows, cache) if with_cache else rows
-
-========================================================================>
-
-how many days will take to create the new obc certificateIn Andhra Pradesh, obtaining a new Central OBC-NCL certificate through a Grama Sachivalayam or MeeSeva centre typically takes 7 to 15 days.The exact timeline depends on whether you already hold a valid, digitally signed permanent state BC caste certificate:⚡ Fast-Track Method (7 Days): If you already have your permanent MeeSeva state BC certificate, the digital verification process is much quicker. The Sachivalayam operator simply uses your existing caste application data and links your current family income documents to issue the central format certificate. Under the official MeeSeva Service Level Agreement (SLA), this is classified as a "Category B" service and is legally mandated to be processed within 7 working days.⏳ Standard Method (15 Days): If you are applying for both a fresh caste validation and an OBC-NCL certificate simultaneously, the application must pass down to the local VRO (Village Revenue Officer) and Panchayat Secretary for local field verification. Once verified, it goes up to the Tahsildar for final approval, taking up to 15 days total.Pro Tips to Speed Up the Process:Apply Proactively: Do not wait for the formal GDS merit list selection message or physical call letter. Walk into your local Sachivalayam tomorrow morning to submit your details.Track Online: You can continuously track the daily live status of your file using your transaction number directly on the AP MeeSeva Application Tracker.Do you currently hold an active, digital MeeSeva State BC Certificate or a current Income Certificate from your local secretariat? Knowing this will help determine if you qualify for the faster 7-day turnaround window.
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
+                    # arr[left] > arr[right]
+                    temp.append(arr[right])
+                    
+                    # All remaining elements in left half
+                    # will form an inversion with arr[right]
+                    count += (mid - left + 1)
+                    
+                    right += 1
+
+            # Add remaining left elements
+            while left <= mid:
+                temp.append(arr[left])
+                left += 1
+
+            # Add remaining right elements
+            while right <= high:
+                temp.append(arr[right])
+                right += 1
 
+            # Copy sorted elements back
+            for i in range(low, high + 1):
+                arr[i] = temp[i - low]
 
-========================================================================>
+            return count
 
+        def merge_sort(arr, low, high):
+            count = 0
 
-========================================================================>
+            if low >= high:
+                return count
 
+            mid = (low + high) // 2
 
-========================================================================>
+            # Count inversions in left half
+            count += merge_sort(arr, low, mid)
 
+            # Count inversions in right half
+            count += merge_sort(arr, mid + 1, high)
 
-========================================================================>
+            # Count cross inversions while merging
+            count += merge(arr, low, mid, high)
 
+            return count
 
-========================================================================>
+        return merge_sort(nums, 0, len(nums) - 1)
+        
+        
+TRACING THIS EXAMPLE INPUT ARRAY : [5, 3, 2, 4, 1] 
+        
+                                 [5, 3, 2, 4, 1]
+                                  |
+                    ┌─────────────┴─────────────┐
+                    ↓                           ↓
+                [5, 3, 2]                    [4, 1]
+                    |                           |
+              ┌─────┴─────┐                 ┌───┴───┐
+              ↓           ↓                 ↓       ↓
+            [5, 3]       [2]              [4]     [1]
+              |
+          ┌───┴───┐
+          ↓       ↓
+         [5]     [3]
+
+
+==================== MERGE ====================
+
+         [5] + [3]
+              ↓
+            [3,5]
+              |
+              | 5 > 3 → +1 inversion
+              ↓
+          [3,5] + [2]
+              |
+              | 3 > 2 → +2 inversions
+              | 5 > 2
+              ↓
+           [2,3,5]
+
+
+         [4] + [1]
+              |
+              | 4 > 1 → +1 inversion
+              ↓
+            [1,4]
+
+
+================ FINAL MERGE ================
+
+          [2,3,5] + [1,4]
+                  |
+                  |
+          2 > 1 → +3 inversions
+          3 > 1
+          5 > 1
+                  |
+          5 > 4 → +1 inversion
+                  ↓
+            [1,2,3,4,5]
+
+
+================ TOTAL =================
 
+Left inversions   = 3
+Right inversions  = 1
+Cross inversions  = 4
+                    ───
+Total             = 8
 
-========================================================================>
+===================================================================================>
 
 
-========================================================================>
 
 
-========================================================================>
+493. Reverse Pairs : 
 
+Given an integer array nums, return the number of reverse pairs in the array.
 
-========================================================================>
+A reverse pair is a pair (i, j) where:
 
+0 <= i < j < nums.length and nums[i] > 2 * nums[j].
+ 
 
-========================================================================>
+Example 1:
+Input: nums = [1,3,2,3,1]
+Output: 2
 
+Explanation: The reverse pairs are:
+note : please make sure that (1,4 ) are the index numbers not the exact numbers  : 
+(1, 4) --> nums[1] = 3, nums[4] = 1, 3 > 2 * 1
+(3, 4) --> nums[3] = 3, nums[4] = 1, 3 > 2 * 1
 
-========================================================================>
 
+Example 2:
+Input: nums = [2,4,3,5,1]
+Output: 3
 
-========================================================================>
+Explanation: The reverse pairs are:
+note : please make sure that (1,4 ) are the index numbers not the exact numbers  : 
+(1, 4) --> nums[1] = 4, nums[4] = 1, 4 > 2 * 1
+(2, 4) --> nums[2] = 3, nums[4] = 1, 3 > 2 * 1
+(3, 4) --> nums[3] = 5, nums[4] = 1, 5 > 2 * 1
 
+=> BRUTE FORCE SOLUTION :
+T.C ==> O(n^2)  :  two nested loops to check all pairs
 
-========================================================================>
+Reverse Pairs — High-Level Workflow : 
 
+1) Initialize count = 0 to store the number of reverse pairs.
+2) Take each element nums[i] as the first element of the pair.
+3) Compare it with every element after it using j = i + 1.
+4) Check the reverse-pair condition:
+   nums[i] > 2 * nums[j]
+5) If the condition is true, increment count by 1.
+6) Continue checking all possible pairs (i, j) where i < j.
+7) Return count as the total number of reverse pairs.
 
-========================================================================>
+class Solution:
+    def reversePairs(self, nums: list[int]) -> int:
+        n = len(nums)
+        count = 0 
+        for i in range(0,n-1):
+            for j in range(i+1 , n):
+                if nums[i] > 2*(nums[j]) :
+                    count +=1 
+        return count             
 
+        
+=> OPTIMAL FORCE SOLUTION :
 
-========================================================================>
+T.C ==> O(n log n) :
+The array is divided into halves recursively O(log n), 
+and reverse pairs are counted + elements are merged in O(n) at each level.
 
+S.C ==> O(n) :
+merge() uses a temporary array temp to merge elements.
 
-========================================================================>
+Workflow steps : 
+1) Start with the entire array and call merge_sort(nums, 0, n-1).
+2) If the range contains only one element (low >= high), return 0 because a single element cannot form a pair.
+3) Find the middle index:
+   mid = (low + high) // 2
+4) Divide the array into two halves:
+   Left half → low ... mid
+   Right half → mid + 1 ... high
+5) Recursively count reverse pairs inside the left half.
+6) Recursively count reverse pairs inside the right half.
+7) Count cross reverse pairs, where:
+   first element comes from the left half
+   second element comes from the right half
+8) Check the reverse-pair condition:
+arr[left] > 2 * arr[right]
+9) Because both halves are already sorted, use the right pointer to efficiently count multiple valid pairs instead of checking every pair individually.
 
+Add the cross-pair count to the total:
+count += count_pairs(...)
 
-========================================================================>
+10) Merge the two sorted halves using merge() so that the current range becomes sorted.
+11) Return the total count from the current recursive call.
+12) Finally, return the total number of reverse pairs:
+return merge_sort(nums, 0, len(nums) - 1)
 
 
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
-
-
-========================================================================>
+class Solution:
+    def reversePairs(self, nums: list[int]) -> int:
+
+        def merge(arr, low, mid, high):
+            temp = []
+
+            left = low
+            right = mid + 1
+
+            # Merge two sorted halves
+            while left <= mid and right <= high:
+
+                if arr[left] <= arr[right]:
+                    temp.append(arr[left])
+                    left += 1
+
+                else:
+                    temp.append(arr[right])
+                    right += 1
+
+            # Remaining elements from left half
+            while left <= mid:
+                temp.append(arr[left])
+                left += 1
+
+            # Remaining elements from right half
+            while right <= high:
+                temp.append(arr[right])
+                right += 1
+
+            # Copy sorted elements back
+            for i in range(low, high + 1):
+                arr[i] = temp[i - low]
+
+        def count_pairs(arr, low, mid, high):
+            right = mid + 1
+            count = 0
+
+            for left in range(low, mid + 1):
+
+                while right <= high and arr[left] > 2 * arr[right]:
+                    right += 1
+
+                count += right - (mid + 1)
+
+            return count
+
+        def merge_sort(arr, low, high):
+
+            if low >= high:
+                return 0
+
+            mid = (low + high) // 2
+
+            count = 0
+
+            # Count reverse pairs in left half
+            count += merge_sort(arr, low, mid)
+
+            # Count reverse pairs in right half
+            count += merge_sort(arr, mid + 1, high)
+
+            # Count cross reverse pairs
+            count += count_pairs(arr, low, mid, high)
+
+            # Merge both sorted halves
+            merge(arr, low, mid, high)
+
+            return count
+
+        return merge_sort(nums, 0, len(nums) - 1)
+------------------------->
+flow chart based tracing of the above code for the input array : [40,25,19,12,9,6,2]
+
+                              merge_sort(0,6)
+                    Array = [40,25,19,12,9,6,2]
+                                  |
+                     mid = (0+6)//2 = 3
+                                  |
+                    ┌─────────────┴─────────────┐
+                    ↓                           ↓
+             merge_sort(0,3)              merge_sort(4,6)
+             [40,25,19,12]                [9,6,2]
+                    |                           |
+              mid = 1                     mid = 5
+                    |                           |
+             ┌──────┴──────┐              ┌─────┴─────┐
+             ↓             ↓              ↓           ↓
+       merge_sort(0,1)  merge_sort(2,3) merge_sort(4,5) merge_sort(6,6)
+       [40,25]          [19,12]         [9,6]          [2]
+             |             |                |             |
+        mid = 0         mid = 2        mid = 4          |
+             |             |                |             |
+          ┌──┴──┐       ┌─┴─┐           ┌─┴─┐           |
+          ↓     ↓       ↓   ↓           ↓   ↓           |
+       (0,0)  (1,1)   (2,2)(3,3)      (4,4)(5,5)      (6,6)
+       [40]    [25]     [19] [12]       [9]  [6]       [2]
+          |       |       |    |          |    |         |
+          0       0       0    0          0    0         0
+          |       |       |    |          |    |         |
+          └──┬────┘       └─┬──┘          └─┬──┘         |
+             ↓               ↓                ↓           |
+       count_pairs          count_pairs     count_pairs   |
+       (0,0,1)              (2,2,3)        (4,4,5)        |
+       [40] vs [25]         [19] vs [12]   [9] vs [6]    |
+             |                  |               |          |
+           count=0            count=0         count=0       |
+             |                  |               |          |
+             ↓                  ↓               ↓          |
+       merge(0,0,1)        merge(2,2,3)    merge(4,4,5)    |
+             |                  |               |          |
+             ↓                  ↓               ↓          |
+          [25,40]           [12,19]          [6,9]         |
+             |                  |               |          |
+             └──────────┐       └───────┐       └──────┐  |
+                        ↓               ↓              ↓  |
+                  merge_sort(0,1)  merge_sort(2,3) merge_sort(4,5)
+                  returns 0         returns 0       returns 0
+                        |               |              |
+                        └───────┬───────┘              |
+                                ↓                      |
+                         count_pairs(0,1,3)            |
+                         [25,40] vs [12,19]            |
+                                |                      |
+                         reverse pairs = 3             |
+                         (25,12)                       |
+                         (40,12)                       |
+                         (40,19)                       |
+                                |                      |
+                                ↓                      |
+                         merge(0,1,3)                  |
+                                |                      |
+                                ↓                      |
+                         [12,19,25,40]                |
+                                |                      |
+                         merge_sort(0,3)               |
+                         returns 3                      |
+                                                       |
+                                                       ↓
+                                              merge_sort(6,6)
+                                              returns 0
+                                                       |
+                                                       ↓
+                                              count_pairs(4,5,6)
+                                              [6,9] vs [2]
+                                                       |
+                                              reverse pairs = 2
+                                              (6,2)
+                                              (9,2)
+                                                       |
+                                                       ↓
+                                              merge(4,5,6)
+                                                       |
+                                                       ↓
+                                                   [2,6,9]
+                                                       |
+                                                       ↓
+                                              merge_sort(4,6)
+                                              returns 2
+                                                       |
+                                                       |
+                     ┌─────────────────────────────────┘
+                     ↓
+              BOTH HALVES ARE READY
+                     |
+                     ↓
+       LEFT  = [12,19,25,40]
+       RIGHT = [2,6,9]
+                     |
+                     ↓
+             count_pairs(0,3,6)
+                     |
+        ┌────────────┼────────────┐
+        ↓            ↓            ↓
+      12 vs 2      19 vs ...    25/40 vs ...
+        |            |            |
+      count 1      count 3      count 3 + 3
+        |            |            |
+        └────────────┴────────────┘
+                     |
+                     ↓
+              CROSS COUNT = 10
+                     |
+                     ↓
+                merge(0,3,6)
+                     |
+                     ↓
+          [2,6,9,12,19,25,40]
+                     |
+                     ↓
+              FINAL COUNT
+                3 + 2 + 10
+                     |
+                     ↓
+                     15
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>
+
+===================================================================================>

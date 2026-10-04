@@ -1,6 +1,9 @@
 
 
 
+from ast import Return
+
+
 =========================================================================================================================================>
 =========================================================================================================================================>
 ==================================================================   GRAPHS   =======================================================================>
@@ -12,6 +15,46 @@ Traversal Techniques  : BFS AND DFS
 
 Input: V = 5, adj = [[2, 3, 1], [0], [0, 4], [0], [2]]
 Output:[0, 2, 4, 3, 1], [0, 2, 3, 1, 4]
+
+
+
+Time Complexity: O(V + E)
+ Each vertex is visited once → O(V) 
+ Each edge is checked once → O(E) 
+
+=> BFS of Graph — High-Level Workflow : 
+
+1) Create a visited array of size V to track visited nodes. 
+2) Create a result list to store the BFS traversal order. 
+3) Start BFS from node 0 → add it to the queue and mark it as visited. 
+4) While the queue is not empty, remove the front node. 
+5) Add the removed node to result. 
+6) Visit all its neighbors → if a neighbor is not visited, mark it visited and add it to the queue. 
+7) Repeat until the queue becomes empty. 
+Return result containing the BFS traversal.
+
+
+
+
+DFS of Graph — High-Level Workflow
+1) Create a visited array of size V to keep track of visited nodes. 
+2) Create a result list to store the DFS traversal order. 
+3) Create a stack and start DFS from node 0 → add 0 to the stack and mark it visited. 
+4) While the stack is not empty, remove the last element using stack.pop(). 
+5) Add the removed node to result. 
+6) Check all neighbors of the current node. 
+7)Push unvisited neighbors into the stack and mark them as visited. 
+8) Use reversed(adj[node]) only if you want to control the visiting order (for example, to match recursive DFS order). 
+9) Repeat until the stack is empty. 
+10) Return result containing the DFS traversal.
+
+=> Complexity : 
+Time: O(V + E) 
+Space: O(V) 
+
+Where:
+V = number of vertices 
+E = number of edges 
 
 
 class Solution:
@@ -151,6 +194,23 @@ BFS traversal = [0, 1, 2, 3, 4]
 
 ===> DFS USING THE RECUSRIVE APPROACH : 
 
+
+Complexity
+Time: O(V + E) 
+Space: O(V) 
+Here, the O(V) space is mainly for the visited array + recursion call stack.
+     
+DFS Using Recursion — High-Level Workflow : 
+
+1) Create a visited array of size V to track visited nodes. 
+2) Create a result list to store the DFS traversal order. 
+3) Start DFS from node 0 by calling dfs(0). 
+4) Mark the current node as visited and add it to result. 
+5) Check all neighbors of the current node. 
+6) If a neighbor is not visited, recursively call dfs(neighbor). 
+7) Recursion continues deeper until there are no unvisited neighbors. 
+8) Backtrack to the previous node and continue checking its remaining neighbors. 
+9) Return result after all reachable nodes have been visited.
 class Solution:
     def dfsOfGraph(self, V, adj):
         visited = [False] * V

@@ -1,3 +1,20 @@
+contents : 
+1) Length of loop in LL 
+2) Reverse Linked List or Reverse the linked list 
+3) Sort a LL of 0's 1's and 2's  
+4) Delete Node in a Linked List 
+5) Middle of the Linked List 
+6) 148. Sort List  :  
+7) 2. Add Two Numbers 
+8) 160. Intersection of Two Linked Lists  :  
+9) 141. Linked List Cycle - i : to delete a cycle in the given ll 
+10) Remove Nth Node From End of List : 
+11) Delete the Middle Node of a Linked List
+12) Linked List Cycle II : 
+13) 234. Palindrome Linked List 
+14) Odd Even Linked List 
+15) 
+
 
 ===> Add one to a number represented by LL  : 
 
@@ -380,7 +397,8 @@ class Solution:
 
 
 =========================================================================================================================================>
-876. Middle of the Linked List
+876. Middle of the Linked List : 
+
 Given the head of a singly linked list, return the middle node of the linked list.
 If there are two middle nodes, return the second middle node.
 
@@ -502,6 +520,46 @@ class Solution:
         # Append remaining
         curr.next = l1 or l2
         return dummy.next
+
+or 
+
+
+148. Sort List   : 
+
+
+T.C ===> O(n logn)  for using the merge sort 
+
+==> steps :
+Step 1: Store all values in a list 
+Step 2: Sort the list 
+Step 3: Reassign sorted values back to the linked list
+
+class Solution:
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head:
+            return None
+
+        # Step 1: Store all values in a list
+        vals = [] 
+        curr = head 
+        while curr : 
+            vals.append(curr.val)
+            curr = curr.next
+
+        # Step 2: Sort the list   
+        # vals.sort() 
+        # but here we are using bubble sort to improve the logical skills 
+        for i in range(len(vals)):
+            for j in range(len(vals)-1) : 
+                if  vals[j] > vals[j+1]:
+                    vals[j] , vals[j+1] = vals[j+1] , vals[j]
+
+        # Step 3: Reassign sorted values back to the linked list
+        curr = head
+        for val in vals :  
+            curr.val = val
+            curr= curr.next 
+        return head     
 
 ==============================================================>
 
@@ -813,31 +871,6 @@ Phase 1: Detect if a cycle exists (meeting point inside loop).
 Phase 2: Reset one pointer to head, move both 1 step → first meeting = cycle start.
 =========================================================================================================================================>
 
-
-876. Middle of the Linked List
-Given the head of a singly linked list, return the middle node of the linked list.
-
-If there are two middle nodes, return the second middle node.
-Example 1:
-Input: head = [1,2,3,4,5]
-Output: [3,4,5]
-Explanation: The middle node of the list is node 3.
- 
-Example 2:
-Input: head = [1,2,3,4,5,6]
-Output: [4,5,6]
-Explanation: Since the list has two middle nodes with values 3 and 4, we return the second one.
-
-class Solution:
-    def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        slow = fast = head 
-        while fast and fast.next :
-            slow = slow.next
-            fast = fast.next.next 
-
-        return slow     
-
-=========================================================================================================================================>
 19. Remove Nth Node From End of List : 
 
 Given the head of a linked list, remove the nth node from the end of the list and return its head.
@@ -1154,51 +1187,3 @@ class Solution:
         odd.next = even_head 
         return head     
 =========================================================================================================================================>
-148. Sort List   : 
-
-Example 1:
-Input: head = [4,2,1,3]
-Output: [1,2,3,4]
-
-
-Example 2:
-Input: head = [-1,5,3,4,0]
-Output: [-1,0,3,4,5]
-
-Example 3:
-Input: head = []
-Output: []
-
-T.C ===> O(n logn)  for using the merge sort 
-
-==> steps :
-Step 1: Store all values in a list 
-Step 2: Sort the list 
-Step 3: Reassign sorted values back to the linked list
-
-class Solution:
-    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if not head:
-            return None
-
-        # Step 1: Store all values in a list
-        vals = [] 
-        curr = head 
-        while curr : 
-            vals.append(curr.val)
-            curr = curr.next
-
-        # Step 2: Sort the list   
-        # vals.sort() 
-        # but here we are using bubble sort to improve the logical skills 
-        for i in range(len(vals)):
-            for j in range(len(vals)-1) : 
-                if  vals[j] > vals[j+1]:
-                    vals[j] , vals[j+1] = vals[j+1] , vals[j]
-
-        # Step 3: Reassign sorted values back to the linked list
-        curr = head
-        for val in vals :  
-            curr.val = val
-            curr= curr.next 
-        return head     
