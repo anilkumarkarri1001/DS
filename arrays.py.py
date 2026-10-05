@@ -1935,11 +1935,218 @@ class Solution:
 -------------------------------------------------------------------------->
             
 -------------------------------------------------------------------------->
-            
+
+==> when the user given the no of the rows we have to print the pascal traingle pattern 
+
+T.C => O(n^2)
+S.C => O(1) 
+
+def pascal(n):
+    for i in range(0,n):
+        for s in range(0,n-i-1):
+            print("",end=" ")
+        for j in range(0,i+1):
+            if i == 0 or j == 0 : 
+                c = 1 
+            else : 
+                c = c*(i-j+1)//j
+            print(c,end=" ")   
+        print("\n")    
+pascal(5)
+
+output : 
+    1 
+
+   1 1 
+
+  1 2 1 
+
+ 1 3 3 1 
+
+1 4 6 4 1 
+
+------------------------------------------------------------------------------------------------->
+118. Pascal's Triangle  : 
+In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
+
+Example 1:
+
+Input: numRows = 5
+Output: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
+
+Example 2:
+Input: numRows = 1
+Output: [[1]]
+
+varibales to remember => 
+ans
+ansRow 
+row
+col 
+curr 
+
+
+1) Create an empty list ans to store all rows.
+2) Loop from row 1 to numRows.
+3) Create an empty list ansRow for the current row.
+4) Initialize the first element as 1.
+5) Add the first element (1) to the current row.
+6) Loop through the remaining columns of the current row.
+7) Calculate the next element using the previous element:
+  curr = curr * (row - col)
+  curr = curr // col
+8) Add the calculated element to the current row.
+9) After completing the current row, add ansRow to ans.
+10) Repeat until all rows are generated.
+11) Return ans.
+
+
+T.C => O(n^2) 
+
+from typing import List
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        ans = []
+
+        for row in range(1, numRows + 1):
+            ansRow = []
+
+            curr = 1
+            ansRow.append(curr)
+
+            for col in range(1, row):
+                curr = curr * (row - col) # if row number = 4 => 4*3*2*1 / 1*2*3*4 
+                curr = curr // col
+                ansRow.append(curr)
+
+            ans.append(ansRow)
+        return ans 
+output :
+
+-----------------------------------------------------------------------------------------------------------------------------> 
+==> printing the value for the given row and column in the pascla traingle  : 
+
+def ncr(n,r):
+    res = 1
+    for i in range(0,r):
+        res = res *(n - i)  # 4 * 3 * 2 * 1 / 1* 2* 3* 4
+        res = res // (i+1)
+    return res 
+        
+row =  5
+col = 5 
+print(ncr(row-1 , col-1))
+
+output : 
+1 
+cross check using the below pattern  : 
+
+        1
+      1   1
+    1   2   1
+  1   3   3   1
+1   4   6   4   1
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------> 
+==> printing the row in the pascal traingle for the given row  : 
+
+def print_row(row):
+    ans = 1
+    print(ans, end=" ")
+
+    for i in range(1, row):
+        ans = ans * (row - i) # 4 * 3 * 2 * 1 // 4 * 3 * 2 * 1 
+        ans = ans // i
+        print(ans, end=" ")
+
+print_row(5)
+
+output : 
+1 4 6 4 1             
 -------------------------------------------------------------------------->
-            
+15. 3Sum or 3 Sum : 
+
+Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+
+Notice that the solution set must not contain duplicate triplets.
+
+Example 1:
+
+Input: nums = [-1,0,1,2,-1,-4]
+Output: [[-1,-1,2],[-1,0,1]]
+Explanation: 
+nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.
+nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.
+nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
+The distinct triplets are [-1,0,1] and [-1,-1,2].
+Notice that the order of the output and the order of the triplets does not matter.
+
+Example 2:
+
+Input: nums = [0,1,1]
+Output: []
+Explanation: The only possible triplet does not sum up to 0.
+
+Example 3:
+
+Input: nums = [0,0,0]
+Output: [[0,0,0]]
+Explanation: The only possible triplet sums up to 0.
+
+class Solution:
+    def threeSum(self, nums: list[int]) -> list[list[int]]:
+        n = len(nums)
+        result = set()
+        for i in range(0,n):
+            for j in range(i+1,n):
+                for k in range(j+1,n):
+                    if nums[i] + nums[j] + nums[k] == 0 :
+                        triplet = tuple(sorted([nums[i] , nums[j] , nums[k]]))
+                        result.add(triplet)
+
+        return [list(tpl) for tpl in result]            
 -------------------------------------------------------------------------->
+18. 4Sum or 4 Sum : 
+Given an array nums of n integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:
+
+Example 1:
+Input: nums = [1,0,-1,0,-2,2], target = 0
+Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+
+Example 2:
+Input: nums = [2,2,2,2,2], target = 8
+Output: [[2,2,2,2]]
+
+
+class Solution:
+    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
+        result = set()
+        n = len(nums)
+        for i in range(0,n):
+            for j in range(i+1 , n):
+                for k in range(j+1 , n):
+                    for l in range(k+1,n):
+                        if nums[i] + nums[j] + nums[k] + nums[l] == target : 
+                            quadraple = tuple(sorted([nums[i],nums[j],nums[k],nums[l]])) # we should convert the list into sorted list and convert into tuple becaz set can store mutable data types like Ex : list 
+                            result.add(quadraple)
+        return [list( tpl) for tpl in result]                    
             
+
+Easy rule to remember
+List ([]) → Mutable → ❌ Cannot be added to a set or used as a dictionary key.
+Tuple (()) → Immutable → ✅ Can be added to a set and used as a dictionary key.
+
+This is why we write:
+
+triplet = tuple(sorted([nums[i], nums[j], nums[k]]))
+result.add(triplet)
+
+instead of:
+
+triplet = sorted([nums[i], nums[j], nums[k]])  # This is a list
+result.add(triplet)  # ❌ Error: unhashable type: 'list'            
 -------------------------------------------------------------------------->
             
 -------------------------------------------------------------------------->
@@ -2537,6 +2744,63 @@ flow chart based tracing of the above code for the input array : [40,25,19,12,9,
 ===================================================================================>
 
 ===================================================================================>
+===> 152. Maximum Product Subarray  : 
+Given an integer array nums, find a subarray that has the largest product, and return the product.
+The test cases are generated so that the answer will fit in a 32-bit integer.
+
+Example 1:
+Input: nums = [2,3,-2,4]
+Output: 6
+Explanation: [2,3] has the largest product 6.
+
+Example 2:
+Input: nums = [-2,0,-1]
+Output: 0
+Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
+
+===>  📦 Intuitive Analogy:
+Think of max and min as twin warriors.
+When they face a negative enemy, they swap powers.
+Always keep the strongest twin (max_prod) noted after every battle (iteration)
+
+===> T.C ==> O(n)  note: becaz we are finding max value out of 2 values only
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        if len(nums) ==1:
+            return nums[0]
+        if not nums : 
+            return -1
+
+        max_prod = nums[0]
+        curr_max = curr_min = nums[0]
+        
+        for n in nums[1:]:
+            if n < 0:
+                curr_max, curr_min = curr_min, curr_max  # swap when negative
+            
+            curr_max = max(n, curr_max * n)
+            curr_min = min(n, curr_min * n)
+            
+            max_prod = max(max_prod, curr_max)
+        
+        return max_prod     
+
+
+best example to understand the above code  : 
+Input: [-2, 3, -4]
+Let's go step by step:
+Start: curr_max = curr_min = -2, max_prod = -2
+
+At n = 3:
+curr_max = max(3, -2 * 3) = max(3, -6) = 3
+Because starting from 3 is better than continuing
+
+At n = -4:
+
+Swap curr_max and curr_min → now curr_max = -6, curr_min = 3
+curr_max = max(-4, -6 * -4) = max(-4, 24) = 24
+Multiplying with a negative flipped things!
+Answer: 24
 
 ===================================================================================>
 
